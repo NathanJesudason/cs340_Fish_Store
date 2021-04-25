@@ -1,14 +1,20 @@
-var express = require('express');   // We are using the express library for the web server
-var app     = express();            // We need to instantiate an express object to interact with the server in our code
-PORT        = 9124;                 // Set a port number at the top so it's easy to change in the future
+var express = require('express');
+var exphbs  = require('express-handlebars');
+var app     = express();
+PORT        = 19524;
+
+app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.set('view engine', 'handlebars');
 
 
-app.get('/', function(req, res)                 // This is the basic syntax for what is called a 'route'
-    {
-        res.send("The server is running!")      // This function literally sends the string "The server is running!" to the computer
-    });                                         // requesting the web site.
+app.get('/', function(req, res){
+    res.status(200).render('temp')
+});
 
+app.get('*', function(req, res){
+	res.status(404).render('404');
+});
 
-app.listen(PORT, function(){            // This is the basic syntax for what is called the 'listener' which receives incoming requests on the specified PORT.
+app.listen(PORT, function(){
     console.log('Express started on http://localhost:' + PORT + '; press Ctrl-C to terminate.')
 });
