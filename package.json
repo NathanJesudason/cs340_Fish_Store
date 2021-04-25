@@ -1,0 +1,22 @@
+{
+  "name": "cs340_fish_store",
+  "version": "1.0.0",
+  "description": "Fish store server for a database",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NathanJesudason/cs340_Fish_Store.git"
+  },
+  "author": "Michael Chen, Nathan Jesudason",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NathanJesudason/cs340_Fish_Store/issues"
+  },
+  "homepage": "https://github.com/NathanJesudason/cs340_Fish_Store#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
