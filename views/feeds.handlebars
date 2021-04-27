@@ -1,0 +1,41 @@
+<main id="feed">
+	<h1>Feeds</h1>
+
+	<aside class="filter_box">
+		<h3>Filter</h3>
+		<div class="filter">
+			<label for="get_feed_id">Feed ID</label>
+			<input type="text" id="get_feed_id" name="get_feed_id">
+			<label for="get_name">Name</label>
+			<input type="text" id="get_name" name="get_name">
+			<label for="get_stock">Stock</label>
+			<input type="text" id="get_stock" name="get_stock">
+		</div>
+
+		<button id="filter_button">Filter</button>
+		<br><br>
+	</aside>
+
+	<div class="header">
+		<input type="text" id="feed_id_head" placeholder="Feed ID" readonly>
+		<input type="text" id="name_head"placeholder="Name" readonly>
+		<input type="text" id="stock_head" placeholder="Stock" readonly>
+		<input type="text" id="delete_head" placeholder="Delete Row" readonly>
+	</div>
+
+	{{#each Feeds}}
+		{{> feed_data}}
+	{{/each}}<br>
+
+
+	<div class="create">
+		<h3>Create Data</h3>
+		<label for="set_name">Name</label>
+		<input type="text" id="set_name" name="set_name">
+		<label for="set_stock">Stock</label>
+		<input type="text" id="set_stock" name="set_stock">
+	</div><br>
+
+	{{> buttons}}
+
+</main>
