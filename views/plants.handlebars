@@ -1,0 +1,41 @@
+<main id="plant">
+	<h1>Plants</h1>
+
+	<aside class="filter_box">
+		<h3>Filter</h3>
+		<div class="filter">
+			<label for="get_plant_id">Plant ID</label>
+			<input type="text" id="get_plant_id" name="get_plant_id">
+			<label for="get_species">Species</label>
+			<input type="text" id="get_species" name="get_species">
+			<label for="get_tank_id">Tank ID</label>
+			<input type="text" id="get_tank_id" name="get_tank_id">
+		</div>
+
+		<button id="filter_button">Filter</button>
+		<br><br>
+	</aside>
+
+	<div class="header">
+		<input type="text" id="plant_id_head" placeholder="Plant ID" readonly>
+		<input type="text" id="species_head"placeholder="Species" readonly>
+		<input type="text" id="tank_id_head" placeholder="Tank ID" readonly>
+		<input type="text" id="delete_head" placeholder="Delete Row" readonly>
+	</div>
+
+	{{#each Plants}}
+		{{> plant_data}}
+	{{/each}}<br>
+
+
+	<div class="create">
+		<h3>Create Data</h3>
+		<label for="set_species">Species</label>
+		<input type="text" id="set_species" name="set_species">
+		<label for="set_tank_id">Tank ID</label>
+		<input type="text" id="set_tank_id" name="set_tank_id">
+	</div><br>
+
+	{{> buttons}}
+
+</main>
