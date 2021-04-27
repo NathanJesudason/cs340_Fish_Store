@@ -16,9 +16,9 @@
 		{"pump_id": 3, "flow_rate": 3.73, "age": 1}
 	],
 	"Plants": [
-		{"plant_id": 1, "species": "seaweed", "tank": 1},
-		{"plant_id": 2, "species": "poison_ivy", "tank": 1},
-		{"plant_id": 3, "species": "sword_fern", "tank": 3}
+		{"plant_id": 1, "species": "seaweed", "tank_id": 1},
+		{"plant_id": 2, "species": "poison_ivy", "tank_id": 1},
+		{"plant_id": 3, "species": "sword_fern", "tank_id": 3}
 	],
 	"Tanks": [
 		{"tank_id": 1, "volume": 100, "pump_id": 1},
