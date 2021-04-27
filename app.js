@@ -4,7 +4,7 @@ var app     = express();
 PORT        = 19524;
 
 //temp data
-fishes_data = require('./temp_fish_data.json');
+data = require('./data.json');
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
@@ -15,7 +15,7 @@ app.get('/', function(req, res){
 });
 
 app.get('/fishes', function(req, res){
-	res.status(200).render('entity_table', fishes_data)
+	res.status(200).render('fishes', data)
 });
 
 app.get('*', function(req, res){
