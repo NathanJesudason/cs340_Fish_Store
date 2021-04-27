@@ -3,7 +3,7 @@
 		{"fish_id": 1, "species": "salmon", "age": 3, "tank_id": 1, "volume_needed": 7},
 		{"fish_id": 2, "species": "tuna", "age": 1, "tank_id": 1, "volume_needed": 2},
 		{"fish_id": 3, "species": "flounder", "age": 5, "tank_id": 1, "volume_needed": 10},
-		{"fish_id": 4, "species": "squid", "age": 10, "tank_id": 2, "volume_needed": 20}
+		{"fish_id": 4, "species": "squid", "age": 11, "tank_id": 2, "volume_needed": 20}
 	],
 	"Feeds":[
 		{"feed_id": 1, "name": "bread_crumbs", "stock": 10},
@@ -13,7 +13,7 @@
 	"Pumps": [
 		{"pump_id": 1, "flow_rate": 5.6, "age": 1},
 		{"pump_id": 2, "flow_rate": 4.32, "age": 2},
-		{"pump_id": 3, "flow_rate": 3.73, "age": 1},
+		{"pump_id": 3, "flow_rate": 3.73, "age": 1}
 	],
 	"Plants": [
 		{"plant_id": 1, "species": "seaweed", "tank": 1},
@@ -23,6 +23,6 @@
 	"Tanks": [
 		{"tank_id": 1, "volume": 100, "pump_id": 1},
 		{"tank_id": 2, "volume": 120, "pump_id": 3},
-		{"tank_id": 3, "volume": 110, "pump_id": 2},
+		{"tank_id": 3, "volume": 110, "pump_id": 2}
 	]
 }
