@@ -1,0 +1,41 @@
+<main id="pump">
+	<h1>Pumps</h1>
+
+	<aside class="filter_box">
+		<h3>Filter</h3>
+		<div class="filter">
+			<label for="get_pump_id">Pump ID</label>
+			<input type="text" id="get_pump_id" name="get_pump_id">
+			<label for="get_flow_rate">Flow Rate</label>
+			<input type="text" id="get_flow_rate" name="get_flow_rate">
+			<label for="get_age">Age</label>
+			<input type="text" id="get_age" name="get_age">
+		</div>
+
+		<button id="filter_button">Filter</button>
+		<br><br>
+	</aside>
+
+	<div class="header">
+		<input type="text" id="plant_id_head" placeholder="Pump ID" readonly>
+		<input type="text" id="flow_rate_head"placeholder="Flow Rate" readonly>
+		<input type="text" id="age_head" placeholder="Age" readonly>
+		<input type="text" id="delete_head" placeholder="Delete Row" readonly>
+	</div>
+
+	{{#each Pumps}}
+		{{> pump_data}}
+	{{/each}}<br>
+
+
+	<div class="create">
+		<h3>Create Data</h3>
+		<label for="set_flow_rate">Flow Rate</label>
+		<input type="text" id="set_flow_rate" name="set_flow_rate">
+		<label for="set_age">Age</label>
+		<input type="text" id="set_age" name="set_age">
+	</div><br>
+
+	{{> buttons}}
+
+</main>
