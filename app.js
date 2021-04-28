@@ -7,6 +7,9 @@ PORT        = 19524;
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
+//Public files
+app.use(express.static('public'));
+
 //Routes
 app.get('/', function(req, res){
     res.status(200).render('home')
