@@ -26,14 +26,27 @@ h3 {
 
 /* Filter */
 .filter_box {
-    border: solid 1px;
+    border: solid 1px darkgrey;
     margin: 10px;
+    border-radius: 30px;
+    padding: 10px;
 }
 
 /* Data Creation */
 .create {
-    border: solid 1px;
+    border: solid 1px darkgrey;
     margin: 10px;
+    border-radius: 30px;
+    padding: 10px;
+}
+
+/* Input Boxes */
+.inputs label {
+    color: darkgreen;
+    font-weight: 700;
+    display: inline-block;
+    width: 13%;
+    text-align: center;
 }
 
 /* Data tables */
