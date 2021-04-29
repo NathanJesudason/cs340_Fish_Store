@@ -1,0 +1,41 @@
+<main id="tank">
+	<h1>Tanks</h1>
+
+	<aside class="filter_box">
+		<h3>Filter</h3>
+		<div class="filter">
+			<label for="get_tank_id">Tank ID</label>
+			<input type="text" id="get_tank_id" name="get_tank_id">
+			<label for="get_volume">Volume</label>
+			<input type="text" id="get_volume" name="get_volume">
+			<label for="get_pump_id">Pump ID</label>
+			<input type="text" id="get_pump_id" name="get_pump_id">
+		</div>
+
+		<button id="filter_button">Filter</button>
+		<br><br>
+	</aside>
+
+	<div class="header">
+		<input type="text" id="tank_id_head" placeholder="Tank ID" readonly>
+		<input type="text" id="volume_head"placeholder="Volume" readonly>
+		<input type="text" id="pump_id_head" placeholder="Pump ID" readonly>
+		<input type="text" id="delete_head" placeholder="Delete Row" readonly>
+	</div>
+
+	{{#each Tanks}}
+		{{> tank_data}}
+	{{/each}}<br>
+
+
+	<div class="create">
+		<h3>Create Data</h3>
+		<label for="set_volume">Volume</label>
+		<input type="text" id="set_volume" name="set_volume">
+		<label for="set_pump_id">Pump ID</label>
+		<input type="text" id="set_pump_id" name="set_pump_id">
+	</div><br>
+
+	{{> buttons}}
+
+</main>
