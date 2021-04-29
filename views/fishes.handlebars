@@ -4,16 +4,26 @@
 	<aside class="filter_box">
 		<h3>Filter</h3>
 		<div class="filter">
-			<label for="get_fish_id">Fish ID</label>
-			<input type="text" id="get_fish_id" name="get_fish_id">
-			<label for="get_species">Species</label>
-			<input type="text" id="get_species" name="get_species">
-			<label for="get_age">Age</label>
-			<input type="text" id="get_age" name="get_age">
-			<label for="get_tank_id">Tank ID</label>
-			<input type="text" id="get_tank_id" name="get_tank_id">
-			<label for="get_volume_needed">Volume Needed</label>
-			<input type="text" id="get_volume_needed" name="get_volume_needed">
+			<div class="inputs">
+				<label for="get_fish_id">Fish ID</label>
+				<input type="text" id="get_fish_id" name="get_fish_id">
+			</div>
+			<div class="inputs">
+				<label for="get_species">Species</label>
+				<input type="text" id="get_species" name="get_species">
+			</div>
+			<div class="inputs">
+				<label for="get_age">Age</label>
+				<input type="text" id="get_age" name="get_age">
+			</div>
+			<div class="inputs">
+				<label for="get_tank_id">Tank ID</label>
+				<input type="text" id="get_tank_id" name="get_tank_id">
+			</div>
+			<div class="inputs">
+				<label for="get_volume_needed">Volume Needed</label>
+				<input type="text" id="get_volume_needed" name="get_volume_needed">
+			</div>
 		</div>
 
 		<button id="filter_button">Filter</button>
@@ -36,14 +46,22 @@
 
 	<div class="create">
 		<h3>Create Data</h3>
-		<label for="set_species">Species</label>
-		<input type="text" id="set_species" name="set_species">
-		<label for="set_age">Age</label>
-		<input type="text" id="set_age" name="set_age">
-		<label for="set_tank_id">Tank ID</label>
-		<input type="text" id="set_tank_id" name="set_tank_id">
-		<label for="set_volume_needed">Volume Needed</label>
-		<input type="text" id="set_volume_needed" name="set_volume_needed">
+		<div class="inputs">
+			<label for="set_species">Species</label>
+			<input type="text" id="set_species" name="set_species">
+		</div>
+		<div class="inputs">
+			<label for="set_age">Age</label>
+			<input type="text" id="set_age" name="set_age">
+		</div>
+		<div class="inputs">
+			<label for="set_tank_id">Tank ID</label>
+			<input type="text" id="set_tank_id" name="set_tank_id">
+		</div>
+		<div class="inputs">
+			<label for="set_volume_needed">Volume Needed</label>
+			<input type="text" id="set_volume_needed" name="set_volume_needed">
+		</div>
 	</div><br>
 
 	{{> buttons}}
