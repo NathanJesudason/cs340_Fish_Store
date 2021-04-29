@@ -1,0 +1,41 @@
+<main class="temp_content">
+	<h1>Plants and Pumps</h1>
+
+	<h2>Plants</h2>
+	<div id="Plants" style="overflow-y: scroll;">
+		{{#each Plants}}
+			{{>plant_data_m}}
+		{{else}}
+		No plants yet!
+		{{/each}}
+	</div>
+
+	<br>
+
+	<h2>Pumps</h2>
+	<div id="Pumps" style="overflow-y: scroll;">
+		{{#each Pumps}}
+			{{>pump_data_m}}
+		{{else}}
+		Not Pumps yet!
+		{{/each}}
+	</div>
+
+	<br>
+
+	<h2>Relationships</h2>
+
+	<div id="Plants_Pumps" style="display: grid; grid-template-columns: auto auto auto;">
+		<div class="static">plant_id</div>
+		<div class="static">pump_id</div>
+		<div class="static">delete</div>
+		<div class="input">Drag plant Here</div>
+		<div class="input">Drag feed Here</div>
+		<div class="delete">Click delete of a row to remove</div>
+		{{#each Plants_Pumps}}
+		<div class="plant_id">{{this.plant_id}}</div>
+		<div class="pump_id">{{this.pump_id}}</div>
+		<div class="delete-row"><button type="button">Delete</button>
+		{{/each}}
+	</div>
+</main>
