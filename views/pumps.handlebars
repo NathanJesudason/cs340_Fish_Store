@@ -4,12 +4,18 @@
 	<aside class="filter_box">
 		<h3>Filter</h3>
 		<div class="filter">
-			<label for="get_pump_id">Pump ID</label>
-			<input type="text" id="get_pump_id" name="get_pump_id">
-			<label for="get_flow_rate">Flow Rate</label>
-			<input type="text" id="get_flow_rate" name="get_flow_rate">
-			<label for="get_age">Age</label>
-			<input type="text" id="get_age" name="get_age">
+			<div class="inputs">
+				<label for="get_pump_id">Pump ID</label>
+				<input type="text" id="get_pump_id" name="get_pump_id">
+			</div>
+			<div class="inputs">
+				<label for="get_flow_rate">Flow Rate</label>
+				<input type="text" id="get_flow_rate" name="get_flow_rate">
+			</div>
+			<div class="inputs">
+				<label for="get_age">Age</label>
+				<input type="text" id="get_age" name="get_age">
+			</div>
 		</div>
 
 		<button id="filter_button">Filter</button>
@@ -30,10 +36,14 @@
 
 	<div class="create">
 		<h3>Create Data</h3>
-		<label for="set_flow_rate">Flow Rate</label>
-		<input type="text" id="set_flow_rate" name="set_flow_rate">
-		<label for="set_age">Age</label>
-		<input type="text" id="set_age" name="set_age">
+		<div class="inputs">
+			<label for="set_flow_rate">Flow Rate</label>
+			<input type="text" id="set_flow_rate" name="set_flow_rate">
+		</div>
+		<div class="inputs">
+			<label for="set_age">Age</label>
+			<input type="text" id="set_age" name="set_age">
+		</div>
 	</div><br>
 
 	{{> buttons}}
