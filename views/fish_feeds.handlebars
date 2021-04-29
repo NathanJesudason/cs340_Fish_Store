@@ -1,0 +1,37 @@
+<main class="temp_content">
+	<h1>Fish and Feeds</h1>
+
+	<h2>Fish</h2>
+	<div id="Fishes" style="overflow-y: scroll;">
+		{{#each Fishes}}
+			{{>fish_data_m}}
+		{{/each}}
+	</div>
+
+	<br>
+
+	<h2>Feed</h2>
+	<div id="Feeds" style="overflow-y: scroll;">
+		{{#each Feeds}}
+			{{>feed_data_m}}
+		{{/each}}
+	</div>
+
+	<br>
+
+	<h2>Relationships</h2>
+
+	<div id="Fish_Feeds" style="display: grid; grid-template-columns: auto auto auto;">
+		<div class="static">fish_id</div>
+		<div class="static">feed_id</div>
+		<div class="static">delete</div>
+		<div class="input">Drag Fish Here</div>
+		<div class="input">Drag Feed Here</div>
+		<div class="delete">Click delete of a row to remove</div>
+		{{#each Fish_Feeds}}
+		<div>{{this.fish_id}}</div>
+		<div>{{this.feed_id}}</div>
+		<div class="delete-row"><button type="button">Delete</button>
+		{{/each}}
+	</div>
+</main>

@@ -35,6 +35,14 @@ app.get('/plants', function(req, res){
 	res.status(200).render('plants', data)
 });
 
+app.get('/fish_feeds', function(req, res){
+	res.status(200).render('fish_feeds', data)
+});
+
+app.get('/plants_pumps', function(req, res){
+	res.status(200).render('plants_pumps', data)
+});
+
 //404 Page
 app.get('*', function(req, res){
 	res.status(404).render('404');
