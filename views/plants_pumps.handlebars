@@ -1,8 +1,9 @@
 <main class="temp_content">
 	<h1>Plants and Pumps</h1>
 
-	<h2>Plants</h2>
-	<div id="Plants" style="overflow-y: scroll;">
+	<div id="Lists">
+	<div class="Objects" style="overflow-y: scroll;">
+		<h2>Plants</h2>
 		{{#each Plants}}
 			{{>plant_data_m}}
 		{{else}}
@@ -10,15 +11,14 @@
 		{{/each}}
 	</div>
 
-	<br>
-
-	<h2>Pumps</h2>
-	<div id="Pumps" style="overflow-y: scroll;">
+	<div class="objects" style="overflow-y: scroll;">
+		<h2>Pumps</h2>
 		{{#each Pumps}}
 			{{>pump_data_m}}
 		{{else}}
 		Not Pumps yet!
 		{{/each}}
+
 	</div>
 
 	<br>

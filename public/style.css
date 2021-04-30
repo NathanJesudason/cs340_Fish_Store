@@ -24,6 +24,33 @@ h3 {
     font-size: 30px;
 }
 
+/* M:M entity tables */
+
+#Lists {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+#Lists .Objects{
+    text-align: justify;
+}
+/* Nav Bar */
+.navbar {
+    background-color: rgb(52, 52, 189);
+    padding: 15px 15px;
+}
+
+.navbar a {
+    background-color: skyblue;
+    text-decoration: none;
+    color: rgb(1, 58, 44);
+    padding: 10px 40px;
+}
+
+.navbar a:hover {
+    background-color: steelblue;
+}
+
 /* Filter */
 .filter_box {
     border: solid 1px darkgrey;
