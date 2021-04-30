@@ -6,6 +6,13 @@ body {
 body > h1 {
     color: darkgreen;
     font-size: 40px;
+    text-align: center;
+}
+
+p {
+    color: darkgreen;
+    font-size: 30px;
+    text-align: center;
 }
 
 /* Entity Pages */
@@ -16,6 +23,7 @@ main {
 
 h1 {
     color: darkgreen;
+    text-align: center;
     font-size: 35px;
 }
 
