@@ -46,6 +46,7 @@ h3 {
 .navbar {
     background-color: rgb(52, 52, 189);
     padding: 15px 15px;
+    text-align: center;
 }
 
 .navbar a {
@@ -53,6 +54,8 @@ h3 {
     text-decoration: none;
     color: rgb(1, 58, 44);
     padding: 10px 40px;
+    display: inline-block;
+    margin-bottom: 5px;
 }
 
 .navbar a:hover {
