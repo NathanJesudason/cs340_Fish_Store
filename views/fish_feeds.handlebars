@@ -1,3 +1,20 @@
+<!--- Credit to https://www.w3schools.com/HTML/html5_draganddrop.asp --->
+<script>
+function allowDrop(ev){
+	ev.preventDefault();
+}
+
+function drag(ev) {
+	ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+	ev.preventDefault();
+	var data = ev.dataTransfer.getData("text");
+	ev.target.appendChild(document.getElementById(data))
+}
+
+</script>
 <main class="temp_content">
 	<h1>Fish and Feeds</h1>
 
@@ -5,34 +22,71 @@
 
 	<div class="Objects" style="overflow-y: scroll;">
 		<h2>Fish</h2>
+		<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Species</th>
+				<th>Age</th>
+				<th>Tank ID</th>
+				<th>Volume Needed</th>
+			</tr>
+		</thead>
+		<tbody>
 		{{#each Fishes}}
 			{{>fish_data_m}}
 		{{/each}}
+		</tbody>
+		</table>
 	</div>
 
+<i class="move fas fa-random fa-rotate-90 fa-10x"></i>
 	
 	<div class="Objects" style="overflow-y: scroll;">
 		<h2>Feed</h2>
+		<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Stock</th>
+			</tr>
+		</thead>
+		<tbody>
 		{{#each Feeds}}
 			{{>feed_data_m}}
 		{{/each}}
+		</tbody>
+		</table>
 	</div>
+
 	</div>
 	<br>
 
-	<h2>Relationships</h2>
-
-	<div id="Fish_Feeds" style="display: grid; grid-template-columns: auto auto auto;">
-		<div class="static">fish_id</div>
-		<div class="static">feed_id</div>
-		<div class="static">delete</div>
-		<div class="input">Drag Fish Here</div>
-		<div class="input">Drag Feed Here</div>
-		<div class="delete">Click delete of a row to remove</div>
+	<div id="Fish_Feeds">
+		<h2>Relationships</h2>
+		<table>
+		<thead>
+			<tr>
+				<th class="static">fish_id</th>
+				<th class="static">feed_id</th>
+				<th class="static">delete/add</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td class="input">Drag Fish Here</td>
+				<td class="input">Drag Feed Here</td>
+				<td class="add"><button type="button"><i class="fas fa-plus"></i></button></td>
+			</tr>
 		{{#each Fish_Feeds}}
-		<div>{{this.fish_id}}</div>
-		<div>{{this.feed_id}}</div>
-		<div class="delete-row"><button type="button">Delete</button>
+			<tr>
+				<td style="border: 1px solid; border-color:black;">{{this.fish_id}}</td>
+				<td style="border: 1px solid; border-color:black;">{{this.feed_id}}</td>
+				<td class="delete-row"><button type="button"><i class="fas fa-trash"></i></button></td>
+			</tr>
 		{{/each}}
+		</tbody>
+		</table>
 	</div>
 </main>
