@@ -13,6 +13,9 @@ p {
     color: darkgreen;
     font-size: 30px;
     text-align: center;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Entity Pages */
