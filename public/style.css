@@ -127,6 +127,16 @@ input:focus{
     transition-duration: 0.6s;
 }
 
+.header input:focus {
+    background:lightsalmon;
+    transition-duration: 0.6s; 
+}
+
+.static:focus {
+    background:lightsalmon;
+    transition-duration: 0.6s; 
+}
+
 /* CRUD Buttons */
 button {
     background-color: darkgreen;
