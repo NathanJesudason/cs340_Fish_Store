@@ -27,6 +27,11 @@ h1 {
     font-size: 35px;
 }
 
+h2 {
+    color: darkgreen;
+    text-align: center;
+}
+
 h3 {
     color: darkgreen;
     font-size: 30px;
