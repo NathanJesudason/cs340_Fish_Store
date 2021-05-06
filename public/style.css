@@ -9,10 +9,13 @@ body > h1 {
     text-align: center;
 }
 
-p {
+.home p {
     color: darkgreen;
     font-size: 30px;
     text-align: center;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Entity Pages */
@@ -27,9 +30,16 @@ h1 {
     font-size: 35px;
 }
 
+h2 {
+    color: darkgreen;
+    text-align: center;
+}
+
 h3 {
     color: darkgreen;
     font-size: 30px;
+    margin-bottom: 0px;
+    margin-top: 0px;
 }
 
 /* M:M entity tables */
@@ -80,11 +90,26 @@ h3 {
     color: darkgreen;
     font-weight: 700;
     display: inline-block;
-    width: 13%;
+    width: 100%;
     text-align: center;
 }
 
+.inputs {
+    display: inline-block;
+}
+
+.inputs input{
+    display: block;
+}
+
 /* Data tables */
+.data_box {
+    border: solid 1px darkgrey;
+    margin: 10px;
+    border-radius: 30px;
+    padding: 10px;
+}
+
 .header ::placeholder{
     color:black;
     font-weight: 700;
@@ -95,6 +120,7 @@ h3 {
 .data_container ::placeholder {
     color: black;
     font-weight: 700;
+    font-size: 16px;
 }
 
 input[type="checkbox"]{
@@ -120,6 +146,30 @@ input {
 input:focus{
     background:#7FFFD4;
     transition-duration: 0.6s;
+}
+
+.header input:focus {
+    background:lightsalmon;
+    transition-duration: 0.6s; 
+}
+
+.static:focus {
+    background:lightsalmon;
+    transition-duration: 0.6s; 
+}
+
+.input_box input {
+    width: 95%;
+}
+
+/* Hover buttons */
+.info {
+    display: none;
+    color: darkgreen;
+}
+
+.show_info:hover + .info {
+    display: inline-block;
 }
 
 /* CRUD Buttons */

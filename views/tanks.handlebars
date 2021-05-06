@@ -3,7 +3,12 @@
 
 	<aside class="filter_box">
 		<h3>Filter</h3>
-		<div class="filter">
+
+		{{#> info}}
+		Enter your desired value for each attribute and then click the "Filter" button to filter the table!
+		{{/info}}
+
+		<div class="input_box">
 			<div class="inputs">
 				<label for="get_tank_id">Tank ID</label>
 				<input type="text" id="get_tank_id" name="get_tank_id">
@@ -17,32 +22,43 @@
 				<input type="text" id="get_pump_id" name="get_pump_id">
 			</div>
 		</div>
-
-		<button id="filter_button">Filter</button>
-		<br><br>
 	</aside>
 
-	<div class="header">
-		<input type="text" id="tank_id_head" placeholder="Tank ID" readonly>
-		<input type="text" id="volume_head"placeholder="Volume" readonly>
-		<input type="text" id="pump_id_head" placeholder="Pump ID" readonly>
-		<input type="text" id="delete_head" placeholder="Delete Row" readonly>
+	<div class="data_box">
+		<h3>Data</h3>
+
+		{{#> info}}
+		The boxes that turn light green are changeable and the boxes that turn salmon color are readonly. To edit data, type the desired value into the selected light green box and click on the "Update" button. To delete data, click on the checkbox next to the data's row and click the "Delete" button!
+		{{/info}}
+
+		<div class="header">
+			<input type="text" id="tank_id_head" placeholder="Tank ID" readonly>
+			<input type="text" id="volume_head"placeholder="Volume" readonly>
+			<input type="text" id="pump_id_head" placeholder="Pump ID" readonly>
+			<input type="text" id="delete_head" placeholder="Delete Row" readonly>
+		</div>
+
+		{{#each Tanks}}
+			{{> tank_data}}
+		{{/each}}<br>
 	</div>
-
-	{{#each Tanks}}
-		{{> tank_data}}
-	{{/each}}<br>
-
 
 	<div class="create">
 		<h3>Create Data</h3>
-		<div class="inputs">
-			<label for="set_volume">Volume</label>
-			<input type="text" id="set_volume" name="set_volume">
-		</div>
-		<div class="inputs">
-			<label for="set_pump_id">Pump ID</label>
-			<input type="text" id="set_pump_id" name="set_pump_id">
+
+		{{#> info}}
+		Enter your desired values for each attribute and click on the "Create" button to add data to the table!
+		{{/info}}
+
+		<div class="input_box">
+			<div class="inputs">
+				<label for="set_volume">Volume</label>
+				<input type="text" id="set_volume" name="set_volume">
+			</div>
+			<div class="inputs">
+				<label for="set_pump_id">Pump ID</label>
+				<input type="text" id="set_pump_id" name="set_pump_id">
+			</div>
 		</div>
 	</div><br>
 
