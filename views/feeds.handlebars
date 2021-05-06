@@ -24,21 +24,23 @@
 		</div>
 	</aside>
 
-	{{#> info}}
-	The boxes that turn light green are changeable and the boxes that turn salmon color are readonly. To edit data, type the desired value into the selected light green box and click on the "Update" button. To delete data, click on the checkbox next to the data's row and click the "Delete" button!
-	{{/info}}
+	<div class="data_box">
+		<h3>Data</h3>
+		{{#> info}}
+		The boxes that turn light green are changeable and the boxes that turn salmon color are readonly. To edit data, type the desired value into the selected light green box and click on the "Update" button. To delete data, click on the checkbox next to the data's row and click the "Delete" button!
+		{{/info}}
 
-	<div class="header">
-		<input type="text" id="feed_id_head" placeholder="Feed ID" readonly>
-		<input type="text" id="name_head"placeholder="Name" readonly>
-		<input type="text" id="stock_head" placeholder="Stock" readonly>
-		<input type="text" id="delete_head" placeholder="Delete Row" readonly>
+		<div class="header">
+			<input type="text" id="feed_id_head" placeholder="Feed ID" readonly>
+			<input type="text" id="name_head"placeholder="Name" readonly>
+			<input type="text" id="stock_head" placeholder="Stock" readonly>
+			<input type="text" id="delete_head" placeholder="Delete Row" readonly>
+		</div>
+
+		{{#each Feeds}}
+			{{> feed_data}}
+		{{/each}}<br>
 	</div>
-
-	{{#each Feeds}}
-		{{> feed_data}}
-	{{/each}}<br>
-
 
 	<div class="create">
 		<h3>Create Data</h3>

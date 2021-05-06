@@ -103,6 +103,13 @@ h3 {
 }
 
 /* Data tables */
+.data_box {
+    border: solid 1px darkgrey;
+    margin: 10px;
+    border-radius: 30px;
+    padding: 10px;
+}
+
 .header ::placeholder{
     color:black;
     font-weight: 700;

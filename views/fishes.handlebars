@@ -32,23 +32,26 @@
 		</div>
 	</aside>
 
-	{{#> info}}
-	The boxes that turn light green are changeable and the boxes that turn salmon color are readonly. To edit data, type the desired value into the selected light green box and click on the "Update" button. To delete data, click on the checkbox next to the data's row and click the "Delete" button!
-	{{/info}}
+	<div class="data_box">
+		<h3>Data</h3>
 
-	<div class="header">
-		<input type="text" id="fish_id_head" placeholder="Fish ID" readonly>
-		<input type="text" id="species_head"placeholder="Species" readonly>
-		<input type="text" id="age_head" placeholder="Age" readonly>
-		<input type="text" id="tank_id_head" placeholder="Tank ID" readonly>
-		<input type="text" id="volume_needed_head" placeholder="Volume Needed" readonly>
-		<input type="text" id="delete_head" placeholder="Delete Row" readonly>
+		{{#> info}}
+		The boxes that turn light green are changeable and the boxes that turn salmon color are readonly. To edit data, type the desired value into the selected light green box and click on the "Update" button. To delete data, click on the checkbox next to the data's row and click the "Delete" button!
+		{{/info}}
+
+		<div class="header">
+			<input type="text" id="fish_id_head" placeholder="Fish ID" readonly>
+			<input type="text" id="species_head"placeholder="Species" readonly>
+			<input type="text" id="age_head" placeholder="Age" readonly>
+			<input type="text" id="tank_id_head" placeholder="Tank ID" readonly>
+			<input type="text" id="volume_needed_head" placeholder="Volume Needed" readonly>
+			<input type="text" id="delete_head" placeholder="Delete Row" readonly>
+		</div>
+
+		{{#each Fishes}}
+			{{> fish_data}}
+		{{/each}}<br>
 	</div>
-
-	{{#each Fishes}}
-		{{> fish_data}}
-	{{/each}}<br>
-
 
 	<div class="create">
 		<h3>Create Data</h3>
