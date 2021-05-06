@@ -4,38 +4,72 @@
 	<div id="Lists">
 	<div class="Objects" style="overflow-y: scroll;">
 		<h2>Plants</h2>
+		<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Species</th>
+				<th>Tank ID</th>
+			</tr>
+		</thead>
+		<tbody>
 		{{#each Plants}}
 			{{>plant_data_m}}
-		{{else}}
-		No plants yet!
 		{{/each}}
+		</tbody>
+		</table>
 	</div>
+
+
+<i class="move fas fa-random fa-rotate-90 fa-10x"></i>
 
 	<div class="objects" style="overflow-y: scroll;">
 		<h2>Pumps</h2>
+		<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>Flow Rate</th>
+				<th>Age</th>
+			</tr>
+		</thead>
+		<tbody>
 		{{#each Pumps}}
 			{{>pump_data_m}}
-		{{else}}
-		Not Pumps yet!
 		{{/each}}
+		</tbody>
+		</table>
 
 	</div>
-
+	</div>
 	<br>
 
-	<h2>Relationships</h2>
+	
 
-	<div id="Plants_Pumps" style="display: grid; grid-template-columns: auto auto auto;">
-		<div class="static">plant_id</div>
-		<div class="static">pump_id</div>
-		<div class="static">delete</div>
-		<div class="input">Drag plant Here</div>
-		<div class="input">Drag feed Here</div>
-		<div class="delete">Click delete of a row to remove</div>
+	<div id="Plants_Pumps">
+		<h2>Relationships</h2>
+		<table>
+		<thead>
+			<tr>
+				<th class="static">plant_id</th>
+				<th class="static">pump_id</th>
+				<th class="static">delete/add</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td class="input">Drag Plant Here</td>
+				<td class="input">Drag Pump Here</td>
+				<td class="add"><button type="button"><i class="fas fa-plus"></i></button></td>
+			</tr>
 		{{#each Plants_Pumps}}
-		<div class="plant_id">{{this.plant_id}}</div>
-		<div class="pump_id">{{this.pump_id}}</div>
-		<div class="delete-row"><button type="button">Delete</button>
+			<tr>
+				<td style="border: 1px solid; border-color:black;">{{this.plant_id}}</td>
+				<td style="border: 1px solid; border-color:black;">{{this.pump_id}}</td>
+				<td class="delete-row"><button type="button"><i class="fas fa-trash"></i></button></td>
+			</tr>
 		{{/each}}
+		</tbody>
+		</table>
 	</div>
 </main>
