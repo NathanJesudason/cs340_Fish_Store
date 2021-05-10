@@ -1,3 +1,12 @@
+--Cleaning tables
+SET foreign_key_checks = 0;
+DROP TABLE IF EXISTS Feeds;
+DROP TABLE IF EXISTS Pumps;
+DROP TABLE IF EXISTS Tanks;
+DROP TABLE IF EXISTS Fishes;
+DROP TABLE IF EXISTS Plants;
+SET foreign_key_checks = 1;
+
 --Creating Tables
 CREATE TABLE Feeds(
 feed_id INT AUTO_INCREMENT,
