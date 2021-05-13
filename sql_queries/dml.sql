@@ -28,9 +28,38 @@ UPDATE Tanks SET volume = :curr_tank_volume, pump_id = :curr_fk_pump_id WHERE ta
 UPDATE Fishes SET species = ':curr_fish_species', age = :curr_fish_age, tank_id = :curr_fk_tank_id, volume_needed = :curr_fish_volume_needed WHERE fish_id = :curr_fish_id;
 UPDATE Plants SET species = ':curr_plant_species', tank_id = :curr_fk_tank_id WHERE plant_id = :curr_plant_id;
 
---Delete items from a tabl
+--Delete items from a table
 DELETE FROM Feeds WHERE feed_id = :feed_checkbox;
 DELETE FROM Pumps WHERE pump_id = :pump_checkbox;
 DELETE FROM Tanks WHERE tank_id = :tank_checkbox;
 DELETE FROM Fishes WHERE fish_id = :fishes_checkbox;
 DELETE FROM Plants WHERE plant_id = :plant_checkbox;
+
+--Get all data needed from tables to M:M page
+SELECT * from Plants;
+SELECT * from Pumps;
+Select plant_id, pump_id from Plants_Pumps;
+
+--Add to MM table
+INSERT INTO Plants_Pumps (plant_id, pump_id) values (:plant_id_input, :pump_id_input);
+
+--Delete from MM table
+DELETE FROM Plants_Pumps WHERE plant_id = :plant_id_input AND pump_id = :pump_id_input;
+
+--Update MM table
+UPDATE Plants_Pumps SET plant_id = :plant_id_input, pump_id = :pump_id_input WHERE plant_id = :old_plant_id AND pump_id = :old_pump_id;
+
+
+--Get all data needed from tables to M:M page
+SELECT * from Fishes;
+SELECT * from Feeds;
+Select feed_id, fish_id from Fish_Feeds;
+
+--Add to MM table
+INSERT INTO Fish_Feeds (feed_id, fish_id) values (:feed_id_input, :fish_id_input);
+
+--Delete from MM table
+DELETE FROM Fish_Feeds WHERE fish_id = :fish_id_input AND feed_id = :feed_id_input;
+
+--Update MM table
+UPDATE Fish_Feeds SET feed_id = :feed_id_input, fish_id = :fish_id_input WHERE feed_id = :old_feed_id AND fish_id = :old_fish_id;
