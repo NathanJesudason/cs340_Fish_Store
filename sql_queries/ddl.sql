@@ -5,6 +5,8 @@ DROP TABLE IF EXISTS Pumps;
 DROP TABLE IF EXISTS Tanks;
 DROP TABLE IF EXISTS Fishes;
 DROP TABLE IF EXISTS Plants;
+DROP TABLE IF EXISTS Plants_Pumps;
+DROP TABLE IF EXISTS Fish_Feeds;
 SET foreign_key_checks = 1;
 
 --Creating Tables
@@ -48,6 +50,22 @@ FOREIGN KEY (tank_id) REFERENCES Tanks(tank_id),
 PRIMARY KEY (plant_id)
 );
 
+CREATE TABLE Plants_Pumps(
+    pump_id INT,
+    plant_id INT,
+    FOREIGN KEY (pump_id) REFERENCES Pumps(pump_id),
+    FOREIGN KEY (plant_id) REFERENCES Plants(plant_id),
+    Primary KEY (pump_id, plant_id)
+);
+
+CREATE TABLE Fish_Feeds(
+    fish_id INT,
+    feed_id INT,
+    FOREIGN KEY (fish_id) REFERENCES Fishes(fish_id),
+    FOREIGN KEY (feed_id) REFERENCES Feeds(feed_id),
+    PRIMARY Key(fish_id, feed_id)
+);
+
 --Adding data into the tables
 INSERT INTO Feeds(name, stock) VALUES
 ("Bread Crumbs", 10),
@@ -74,3 +92,7 @@ INSERT INTO Plants(species, tank_id) VALUES
 ("Seaweed", 1),
 ("Poison Ivy", 1),
 ("Sword Fern", 3);
+
+INSERT INTO Fish_Feeds(fish_id, feed_id) VALUES (1, 1);
+
+INSERT INTO Plants_Pumps(plant_id, pump_id) VALUES (1, 1);
