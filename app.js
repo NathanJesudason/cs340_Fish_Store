@@ -110,6 +110,78 @@ app.get('/fishes_filter', function(req, res){
 	});
 });
 
+app.get('/feeds_filter', function(req, res){
+	//Query Creation
+	let data = req.query;
+	let id = data['get_feed_id'];
+	let name = data['get_name'];
+	let stock = data['get_stock'];
+	let query = 'SELECT feed_id, name, stock FROM Feeds WHERE feed_id LIKE \"%'+id+'%\" AND name LIKE \"%'+name+'%\" AND stock LIKE \"%'+stock+'%\";';
+
+	//query execution
+	db.pool.query(query, function(error, rows, fields){
+		if(error){
+			console.log("Query Failure. Error Code: " + error.code);
+			return;
+		}
+		res.status(200).render('feeds', {Feeds: rows});
+	});
+});
+
+app.get('/plants_filter', function(req, res){
+	//Query Creation
+	let data = req.query;
+	let id = data['get_plant_id'];
+	let species = data['get_species'];
+	let tank = data['get_tank_id'];
+	let query = 'SELECT plant_id, species, tank_id FROM Plants WHERE plant_id LIKE \"%'+id+'%\" AND species LIKE \"%'+species+'%\" AND tank_id LIKE \"%'+tank+'%\";';
+
+	//query execution
+	db.pool.query(query, function(error, rows, fields){
+		if(error){
+			console.log("Query Failure. Error Code: " + error.code);
+			return;
+		}
+		res.status(200).render('plants', {Plants: rows});
+	});
+});
+
+app.get('/pumps_filter', function(req, res){
+	//Query Creation
+	let data = req.query;
+	let id = data['get_pump_id'];
+	let flow = data['get_flow_rate'];
+	let age = data['get_age'];
+	let query = 'SELECT pump_id, flow_rate, age FROM Pumps WHERE pump_id LIKE \"%'+id+'%\" AND flow_rate LIKE \"%'+flow+'%\" AND age LIKE \"%'+age+'%\";';
+
+	//query execution
+	db.pool.query(query, function(error, rows, fields){
+		if(error){
+			console.log("Query Failure. Error Code: " + error.code);
+			return;
+		}
+		res.status(200).render('pumps', {Pumps: rows});
+	});
+});
+
+app.get('/tanks_filter', function(req, res){
+	//Query Creation
+	let data = req.query;
+	let id = data['get_tank_id'];
+	let volume = data['get_volume'];
+	let pump = data['get_pump_id'];
+	let query = 'SELECT tank_id, volume, pump_id FROM Tanks WHERE tank_id LIKE \"%'+id+'%\" AND volume LIKE \"%'+volume+'%\" AND pump_id LIKE \"%'+pump+'%\";';
+
+	//query execution
+	db.pool.query(query, function(error, rows, fields){
+		if(error){
+			console.log("Query Failure. Error Code: " + error.code);
+			return;
+		}
+		res.status(200).render('tanks', {Tanks: rows});
+	});
+});
+
 //Adding Data Routes
 app.post('/input_fishes', function(req, res){
 	//Query Creation
