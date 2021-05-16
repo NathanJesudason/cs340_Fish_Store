@@ -1,5 +1,6 @@
 var express = require('express');
 var exphbs  = require('express-handlebars');
+var bodyParser = require('body-parser');
 var app     = express();
 var data 	= require('./data.json');
 var db 	= require('./dbconn');
@@ -7,6 +8,9 @@ PORT        = 19524;
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
 //Public files
 app.use(express.static('public'));
@@ -16,13 +20,13 @@ app.get('/', function(req, res){
     res.status(200).render('home')
 });
 
-
-
+//Displaying data routes
 app.get('/fishes', function(req, res){
 	let query = 'SELECT fish_id, species, age, tank_id, volume_needed FROM Fishes;';
 	db.pool.query(query, function(error, rows, fields){
 		if(error){
 			console.log("Query Failure. Error Code: " + error.code);
+			res.status(400);
 			return;
 		}
 		res.status(200).render('fishes', {Fishes: rows});
@@ -34,6 +38,7 @@ app.get('/tanks', function(req, res){
 	db.pool.query(query, function(error, rows, fields){
 		if(error){
 			console.log("Query Failure. Error Code: " + error.code);
+			res.status(400);
 			return;
 		}
 		res.status(200).render('tanks', {Tanks: rows});
@@ -45,6 +50,7 @@ app.get('/feeds', function(req, res){
 	db.pool.query(query, function(error, rows, fields){
 		if(error){
 			console.log("Query Failure. Error Code: " + error.code);
+			res.status(400);
 			return;
 		}
 		res.status(200).render('feeds', {Feeds: rows});
@@ -56,6 +62,7 @@ app.get('/pumps', function(req, res){
 	db.pool.query(query, function(error, rows, fields){
 		if(error){
 			console.log("Query Failure. Error Code: " + error.code);
+			res.status(400);
 			return;
 		}
 		res.status(200).render('pumps', {Pumps: rows});
@@ -67,6 +74,7 @@ app.get('/plants', function(req, res){
 	db.pool.query(query, function(error, rows, fields){
 		if(error){
 			console.log("Query Failure. Error Code: " + error.code);
+			res.status(400);
 			return;
 		}
 		res.status(200).render('plants', {Plants: rows});
@@ -79,6 +87,50 @@ app.get('/fish_feeds', function(req, res){
 
 app.get('/plants_pumps', function(req, res){
 	res.status(200).render('plants_pumps', data)
+});
+
+//Filtered Data Displaying Routes
+app.get('/fishes_filter', function(req, res){
+	//Query Creation
+	let data = req.query;
+	let id = data['get_fish_id'];
+	let species = data['get_species'];
+	let age = data['get_age'];
+	let tank_id = data['get_tank_id'];
+	let volume = data['get_volume_needed'];
+	let query = 'SELECT fish_id, species, age, tank_id, volume_needed FROM Fishes WHERE fish_id LIKE \"%'+id+'%\" AND species LIKE \"%'+species+'%\" AND age LIKE \"%'+age+'%\" AND tank_id LIKE \"%'+tank_id+'%\" AND volume_needed LIKE \"%'+volume+'%\";';
+
+	//query execution
+	db.pool.query(query, function(error, rows, fields){
+		if(error){
+			console.log("Query Failure. Error Code: " + error.code);
+			return;
+		}
+		res.status(200).render('fishes', {Fishes: rows});
+	});
+});
+
+//Adding Data Routes
+app.post('/input_fishes', function(req, res){
+	//Query Creation
+	let data = req.body;
+	let species = data['set_species'];
+	let age = data['set_age'];
+	let tank = data['set_tank_id'];
+	let volume = data['set_volume_needed'];
+	let query = 'INSERT INTO Fishes (species, age, tank_id, volume_needed) VALUES (\"'+species+'\", '+age+', '+tank+', '+volume+');';
+
+	//Query Execution
+	db.pool.query(query, function(error, rows, fields){
+		if(error){
+			console.log("Query Failure. Error Code: " + error.code);
+			res.status(400).redirect('/fishes');
+			return;
+		}
+		else{
+			res.status(200).redirect('/fishes');
+		}
+	});
 });
 
 //404 Page

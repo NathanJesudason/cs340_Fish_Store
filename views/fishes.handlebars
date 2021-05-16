@@ -8,7 +8,7 @@
 		Enter your desired value for each attribute and then click the "Filter" button to filter the table!
 		{{/info}}
 
-		<div class="input_box">
+		<form class="input_box" id="fishes_filter" method="GET" action="/fishes_filter">
 			<div class="inputs">
 				<label for="get_fish_id">Fish ID</label>
 				<input type="text" id="get_fish_id" name="get_fish_id">
@@ -29,7 +29,9 @@
 				<label for="get_volume_needed">Volume Needed</label>
 				<input type="text" id="get_volume_needed" name="get_volume_needed">
 			</div>
-		</div>
+
+			<input type="submit">
+		</form>
 	</aside>
 
 	<div class="data_box">
@@ -60,7 +62,7 @@
 		Enter your desired values for each attribute and click on the "Create" button to add data to the table!
 		{{/info}}
 
-		<div class="input_box">
+		<form class="input_box" id="input_fishes" method="POST" action="/input_fishes">
 			<div class="inputs">
 				<label for="set_species">Species</label>
 				<input type="text" id="set_species" name="set_species">
@@ -77,7 +79,9 @@
 				<label for="set_volume_needed">Volume Needed</label>
 				<input type="text" id="set_volume_needed" name="set_volume_needed">
 			</div>
-		</div>
+
+			<input type="submit">
+		</form>
 	</div><br>
 
 	{{> buttons}}
