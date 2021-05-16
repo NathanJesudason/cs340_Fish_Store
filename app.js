@@ -188,7 +188,10 @@ app.post('/input_fishes', function(req, res){
 	let data = req.body;
 	let species = data['set_species'];
 	let age = data['set_age'];
-	let tank = data['set_tank_id'];
+	let tank = "NULL";
+	if("" != data['set_tank_id']){
+		tank = data['set_tank_id'];
+	}
 	let volume = data['set_volume_needed'];
 	let query = 'INSERT INTO Fishes (species, age, tank_id, volume_needed) VALUES (\"'+species+'\", '+age+', '+tank+', '+volume+');';
 
@@ -229,7 +232,11 @@ app.post('/input_plants', function(req, res){
 	//Query Creation
 	let data = req.body;
 	let species = data['set_species'];
-	let tank = data['set_tank_id'];
+	let tank = 'NULL'
+	if("" != data['set_tank_id']){
+		tank = data['set_tank_id'];
+	}
+
 	let query = 'INSERT INTO Plants (species, tank_id) VALUES (\"'+species+'\", '+tank+');';
 
 	//Query Execution
@@ -269,7 +276,10 @@ app.post('/input_tanks', function(req, res){
 	//Query Creation
 	let data = req.body;
 	let volume = data['set_volume'];
-	let pump = data['set_pump_id'];
+	let pump = "NULL";
+	if("" != data['set_pump_id']){
+		pump = data['set_pump_id'];
+	}
 	let query = 'INSERT INTO Tanks (volume, pump_id) VALUES ('+volume+', '+pump+');';
 
 	//Query Execution
