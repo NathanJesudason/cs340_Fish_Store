@@ -211,12 +211,28 @@ button {
     margin: 10px;
 }
 
+.query_button {
+    background-color: darkgreen;
+    color: white;
+    text-align: center;
+    border: none;
+    width: 12%;
+    height: 35px;
+    border-radius: 30px;
+    margin: 10px;
+}
+
 .buttons {
     left: 50%;
     margin: 0;
 }
 
 button:hover {
+    background-color: green;
+    transition-duration: 0.6s;
+}
+
+.query_button:hover {
     background-color: green;
     transition-duration: 0.6s;
 }

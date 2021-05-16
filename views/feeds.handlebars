@@ -8,7 +8,7 @@
 		Enter your desired value for each attribute and then click the "Filter" button to filter the table!
 		{{/info}}
 
-		<div class="input_box">
+		<form class="input_box" id="feeds_filter" method="GET" action="/feeds_filter">
 			<div class="inputs">			
 				<label for="get_feed_id">Feed ID</label>
 				<input type="text" id="get_feed_id" name="get_feed_id">
@@ -21,7 +21,9 @@
 				<label for="get_stock">Stock</label>
 				<input type="text" id="get_stock" name="get_stock">
 			</div>
-		</div>
+
+			<input type="submit" value="Filter" class="query_button">
+		</form>
 	</aside>
 
 	<div class="data_box">
@@ -49,7 +51,7 @@
 		Enter your desired values for each attribute and click on the "Create" button to add data to the table!
 		{{/info}}
 
-		<div class="input_box">
+		<form class="input_box" id="input_feeds" method="POST" action="/input_feeds">
 			<div class="inputs">
 				<label for="set_name">Name</label>
 				<input type="text" id="set_name" name="set_name">
@@ -58,7 +60,9 @@
 				<label for="set_stock">Stock</label>
 				<input type="text" id="set_stock" name="set_stock">
 			</div>
-		</div>
+
+			<input type="submit" value="Create" class="query_button">
+		</form>
 	</div><br>
 
 	{{> buttons}}
