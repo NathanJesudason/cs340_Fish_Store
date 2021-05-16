@@ -133,6 +133,86 @@ app.post('/input_fishes', function(req, res){
 	});
 });
 
+app.post('/input_feeds', function(req, res){
+	//Query Creation
+	let data = req.body;
+	let name = data['set_name'];
+	let stock = data['set_stock'];
+	let query = 'INSERT INTO Feeds (name, stock) VALUES (\"'+name+'\", '+stock+');';
+
+	//Query Execution
+	db.pool.query(query, function(error, rows, fields){
+		if(error){
+			console.log("Query Failure. Error Code: " + error.code);
+			res.status(400).redirect('/feeds');
+			return;
+		}
+		else{
+			res.status(200).redirect('/feeds');
+		}
+	});
+});
+
+app.post('/input_plants', function(req, res){
+	//Query Creation
+	let data = req.body;
+	let species = data['set_species'];
+	let tank = data['set_tank_id'];
+	let query = 'INSERT INTO Plants (species, tank_id) VALUES (\"'+species+'\", '+tank+');';
+
+	//Query Execution
+	db.pool.query(query, function(error, rows, fields){
+		if(error){
+			console.log("Query Failure. Error Code: " + error.code);
+			res.status(400).redirect('/plants');
+			return;
+		}
+		else{
+			res.status(200).redirect('/plants');
+		}
+	});
+});
+
+app.post('/input_pumps', function(req, res){
+	//Query Creation
+	let data = req.body;
+	let flow = data['set_flow_rate'];
+	let age = data['set_age'];
+	let query = 'INSERT INTO Pumps (flow_rate, age) VALUES ('+flow+', '+age+');';
+
+	//Query Execution
+	db.pool.query(query, function(error, rows, fields){
+		if(error){
+			console.log("Query Failure. Error Code: " + error.code);
+			res.status(400).redirect('/pumps');
+			return;
+		}
+		else{
+			res.status(200).redirect('/pumps');
+		}
+	});
+});
+
+app.post('/input_tanks', function(req, res){
+	//Query Creation
+	let data = req.body;
+	let volume = data['set_volume'];
+	let pump = data['set_pump_id'];
+	let query = 'INSERT INTO Tanks (volume, pump_id) VALUES ('+volume+', '+pump+');';
+
+	//Query Execution
+	db.pool.query(query, function(error, rows, fields){
+		if(error){
+			console.log("Query Failure. Error Code: " + error.code);
+			res.status(400).redirect('/tanks');
+			return;
+		}
+		else{
+			res.status(200).redirect('/tanks');
+		}
+	});
+});
+
 //404 Page
 app.get('*', function(req, res){
 	res.status(404).render('404');
