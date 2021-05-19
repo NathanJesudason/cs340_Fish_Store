@@ -1,15 +1,15 @@
---Cleaning tables
+-- Cleaning tables
 SET foreign_key_checks = 0;
-DROP TABLE IF EXISTS Feeds;
-DROP TABLE IF EXISTS Pumps;
-DROP TABLE IF EXISTS Tanks;
-DROP TABLE IF EXISTS Fishes;
-DROP TABLE IF EXISTS Plants;
 DROP TABLE IF EXISTS Plants_Pumps;
 DROP TABLE IF EXISTS Fish_Feeds;
+DROP TABLE IF EXISTS Plants;
+DROP TABLE IF EXISTS Fishes;
+DROP TABLE IF EXISTS Tanks;
+DROP TABLE IF EXISTS Pumps;
+DROP TABLE IF EXISTS Feeds;
 SET foreign_key_checks = 1;
 
---Creating Tables
+-- Creating Tables
 CREATE TABLE Feeds(
 feed_id INT AUTO_INCREMENT,
 name VARCHAR(100) NOT NULL,
@@ -66,7 +66,7 @@ CREATE TABLE Fish_Feeds(
     PRIMARY Key(fish_id, feed_id)
 );
 
---Adding data into the tables
+-- Adding data into the tables
 INSERT INTO Feeds(name, stock) VALUES
 ("Bread Crumbs", 10),
 ("Salmon", 20),
