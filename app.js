@@ -2,9 +2,9 @@ var express = require('express');
 var exphbs  = require('express-handlebars');
 var bodyParser = require('body-parser');
 var app     = express();
-var data 	= require('./data.json');
+//var data 	= require('./data.json');
 var db 	= require('./dbconn');
-PORT        = 19524;
+PORT        = 19525;
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
@@ -82,11 +82,35 @@ app.get('/plants', function(req, res){
 });
 
 app.get('/fish_feeds', function(req, res){
-	res.status(200).render('fish_feeds', data)
+	let query = 'SELECT * from Fishes; SELECT * from Feeds; Select feed_id, fish_id from Fish_Feeds;';
+	db.pool.query(query, function(error, rows, fields){
+		if(error){
+			console.log("Query Failure. Error Code: " + error.code);
+			res.status(400);
+			return;
+		}
+		res.status(200).render('fish_feeds', {data: {
+			Fishes: rows[0],
+			Feeds: rows[1],
+			FF: rows[2]
+		}});
+	});
 });
 
 app.get('/plants_pumps', function(req, res){
-	res.status(200).render('plants_pumps', data)
+	let query = 'SELECT * from Plants; SELECT * from Pumps; Select plant_id, pump_id from Plants_Pumps;';
+	db.pool.query(query, function(error, rows, fields){
+		if(error){
+			console.log("Query Failure. Error Code: " + error.code);
+			res.status(400);
+			return;
+		}
+		res.status(200).render('plants_pumps', {data: {
+			Plants: rows[0],
+			Pumps: rows[1],
+			PP: rows[2]
+		}});
+	});
 });
 
 //Filtered Data Displaying Routes
@@ -291,6 +315,46 @@ app.post('/input_tanks', function(req, res){
 		}
 		else{
 			res.status(200).redirect('/tanks');
+		}
+	});
+});
+
+app.post('/input_ff', function(req, res){
+	//Query Creation
+	let data = req.body;
+	let fish_id = data['fish_id'];
+	let feed_id = data['feed_id'];
+	let query = 'INSERT INTO Fish_Feeds (feed_id, fish_id) values (\"'+feed_id+'\", '+fish_id+');';
+
+	//Query Execution
+	db.pool.query(query, function(error, rows, fields){
+		if(error){
+			console.log("Query Failure. Error Code: " + error.code);
+			res.status(400).redirect('/fish_feeds');
+			return;
+		}
+		else{
+			res.status(200).redirect('/fish_feeds');
+		}
+	});
+});
+
+app.post('/input_pp', function(req, res){
+	//Query Creation
+	let data = req.body;
+	let plant_id = data['plant_id'];
+	let pump_id = data['pump_id'];
+	let query = 'INSERT INTO Plants_Pumps (plant_id, pump_id) values (\"'+plant_id+'\", '+pump_id+');';
+
+	//Query Execution
+	db.pool.query(query, function(error, rows, fields){
+		if(error){
+			console.log("Query Failure. Error Code: " + error.code);
+			res.status(400).redirect('/plants_pumps');
+			return;
+		}
+		else{
+			res.status(200).redirect('/plants_pumps');
 		}
 	});
 });

@@ -1,3 +1,68 @@
+<!--- Credit to https://www.w3schools.com/HTML/html5_draganddrop.asp --->
+<script>
+function allowDrop(ev){
+	ev.preventDefault();
+}
+
+function drag(ev) {
+	//console.log(ev.target);
+	//console.log(ev.target.getAttribute('value'));
+	//console.log(ev.target.id);
+	let obj = {value: ev.target.getAttribute('value'), type: ev.target.getAttribute('type')};
+	ev.dataTransfer.setData("text", JSON.stringify(obj));
+}
+
+function drop(ev) {
+	ev.preventDefault();
+	var type = ev.target.getAttribute('title');
+	var obj = JSON.parse(ev.dataTransfer.getData("text"));
+	var data = obj.value;
+	var obj_type = obj.type;
+	if(type === obj_type){
+		ev.target.textContent = data;
+		//ev.target.setAttribute('value', data);
+	}else{
+		console.log(type);
+		console.log(obj_type);
+	}
+}
+
+function addRelationship(ev) {
+	var plant = document.getElementById("plant_input").textContent;
+	var pump = document.getElementById("pump_input").textContent;
+
+	if(isNaN(parseInt(plant)) || isNaN(parseInt(pump))){
+		return;
+	}
+    var postRequest = new XMLHttpRequest();
+    var URL = '/input_pp';
+    postRequest.open('POST', URL);
+    var reqBody = JSON.stringify({
+        plant_id: plant,
+        pump_id: pump
+    });
+
+    postRequest.setRequestHeader('Content-Type', 'application/json');
+    /*postRequest.addEventListener('load', function (event){
+        if (event.target.status === 200) {
+            //var template = Handlebars.templates.definitions;
+            var Content = {
+                question: fish,
+                answer: feed
+            };
+            var cardHTML = Handlebars.templates.definitions(Content);
+            var container = document.getElementsByClassName("flashcard-definitions");
+            container[0].insertAdjacentHTML('beforeend', cardHTML);
+            //addFlashCardDelete();
+        }else{
+            alert("Error adding flashcard to server: " + event.target.response);
+        }
+    });*/
+    postRequest.send(reqBody);
+
+}
+
+</script>
 <main class="temp_content">
 	<h1>Plants and Pumps</h1>
 
@@ -13,7 +78,7 @@
 			</tr>
 		</thead>
 		<tbody>
-		{{#each Plants}}
+		{{#each data.Plants}}
 			{{>plant_data_m}}
 		{{/each}}
 		</tbody>
@@ -21,7 +86,7 @@
 	</div>
 
 
-<i class="move fas fa-random fa-rotate-90 fa-10x"></i>
+<!-- <i class="move fas fa-random fa-rotate-90 fa-10x"></i> -->
 
 	<div class="objects" style="overflow-y: scroll;">
 		<h2>Pumps</h2>
@@ -34,7 +99,7 @@
 			</tr>
 		</thead>
 		<tbody>
-		{{#each Pumps}}
+		{{#each data.Pumps}}
 			{{>pump_data_m}}
 		{{/each}}
 		</tbody>
@@ -58,18 +123,15 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td class="input">Drag Plant Here</td>
-				<td class="input">Drag Pump Here</td>
-				<td class="add"><button type="button"><i class="fas fa-plus"></i></button></td>
+				<td id="plant_input" class="input" ondrop="drop(event)" ondragover="allowDrop(event)" title="Plant">Drag Plant Here</td>
+				<td id="pump_input" class="input" ondrop="drop(event)" ondragover="allowDrop(event)" title="Pump">Drag Pump Here</td>
+				<td class="add" onclick="addRelationship(event)"><button type="button"><i class="fas fa-plus"></i></button></td>
 			</tr>
-		{{#each Plants_Pumps}}
-			<tr>
-				<td style="border: 1px solid; border-color:black;">{{this.plant_id}}</td>
-				<td style="border: 1px solid; border-color:black;">{{this.pump_id}}</td>
-				<td class="delete-row"><button type="button"><i class="fas fa-trash"></i></button></td>
-			</tr>
+		{{#each data.PP}}
+			{{>pp_relationship}}
 		{{/each}}
 		</tbody>
 		</table>
 	</div>
+ 
 </main>

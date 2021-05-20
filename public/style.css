@@ -56,6 +56,7 @@ h3 {
 #Lists .move{
     margin-top: 150px;
     margin-right: 60px;
+    height: 310px;
 }
 
 #Fish_Feeds, #Plants_Pumps {
@@ -72,6 +73,7 @@ h3 {
     padding: 0px 8px 0px 8px;
     text-align: center;
 }
+
 
 .delete-row button, .add button{
     width: 50%;

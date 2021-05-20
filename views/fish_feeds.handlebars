@@ -5,13 +5,61 @@ function allowDrop(ev){
 }
 
 function drag(ev) {
-	ev.dataTransfer.setData("text", ev.target.id);
+	//console.log(ev.target);
+	//console.log(ev.target.getAttribute('value'));
+	//console.log(ev.target.id);
+	let obj = {value: ev.target.getAttribute('value'), type: ev.target.getAttribute('type')};
+	ev.dataTransfer.setData("text", JSON.stringify(obj));
 }
 
 function drop(ev) {
 	ev.preventDefault();
-	var data = ev.dataTransfer.getData("text");
-	ev.target.appendChild(document.getElementById(data))
+	var type = ev.target.getAttribute('title');
+	var obj = JSON.parse(ev.dataTransfer.getData("text"));
+	var data = obj.value;
+	var obj_type = obj.type;
+	if(type === obj_type){
+		ev.target.textContent = data;
+		//ev.target.setAttribute('value', data);
+	}else{
+		console.log(type);
+		console.log(obj_type);
+	}
+}
+
+function addRelationship(ev) {
+	var fish = document.getElementById("fish_input").textContent;
+	var feed = document.getElementById("feed_input").textContent;
+
+	if(isNaN(parseInt(fish)) || isNaN(parseInt(feed))){
+		return;
+	}
+    var postRequest = new XMLHttpRequest();
+    var URL = '/input_ff';
+    postRequest.open('POST', URL);
+    var reqBody = JSON.stringify({
+        fish_id: fish,
+        feed_id: feed
+    });
+
+    postRequest.setRequestHeader('Content-Type', 'application/json');
+    /*postRequest.addEventListener('load', function (event){
+        if (event.target.status === 200) {
+            //var template = Handlebars.templates.definitions;
+            var Content = {
+                question: fish,
+                answer: feed
+            };
+            var cardHTML = Handlebars.templates.definitions(Content);
+            var container = document.getElementsByClassName("flashcard-definitions");
+            container[0].insertAdjacentHTML('beforeend', cardHTML);
+            //addFlashCardDelete();
+        }else{
+            alert("Error adding flashcard to server: " + event.target.response);
+        }
+    });*/
+    postRequest.send(reqBody);
+
 }
 
 </script>
@@ -33,7 +81,7 @@ function drop(ev) {
 			</tr>
 		</thead>
 		<tbody>
-		{{#each Fishes}}
+		{{#each data.Fishes}}
 			{{>fish_data_m}}
 		{{/each}}
 		</tbody>
@@ -53,7 +101,7 @@ function drop(ev) {
 			</tr>
 		</thead>
 		<tbody>
-		{{#each Feeds}}
+		{{#each data.Feeds}}
 			{{>feed_data_m}}
 		{{/each}}
 		</tbody>
@@ -75,16 +123,12 @@ function drop(ev) {
 		</thead>
 		<tbody>
 			<tr>
-				<td class="input">Drag Fish Here</td>
-				<td class="input">Drag Feed Here</td>
-				<td class="add"><button type="button"><i class="fas fa-plus"></i></button></td>
+				<td id="fish_input" class="input" ondrop="drop(event)" ondragover="allowDrop(event)" title="Fish">Drag Fish Here</td>
+				<td id="feed_input" class="input" ondrop="drop(event)" ondragover="allowDrop(event)" title="Feed">Drag Feed Here</td>
+				<td class="add" onclick="addRelationship(event)"><button type="button"><i class="fas fa-plus"></i></button></td>
 			</tr>
-		{{#each Fish_Feeds}}
-			<tr>
-				<td style="border: 1px solid; border-color:black;">{{this.fish_id}}</td>
-				<td style="border: 1px solid; border-color:black;">{{this.feed_id}}</td>
-				<td class="delete-row"><button type="button"><i class="fas fa-trash"></i></button></td>
-			</tr>
+		{{#each data.FF}}
+			{{>ff_relationship}}
 		{{/each}}
 		</tbody>
 		</table>
