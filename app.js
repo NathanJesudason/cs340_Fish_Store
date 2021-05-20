@@ -2,9 +2,9 @@ var express = require('express');
 var exphbs  = require('express-handlebars');
 var bodyParser = require('body-parser');
 var app     = express();
-var data 	= require('./data.json');
+//var data 	= require('./data.json');
 var db 	= require('./dbconn');
-PORT        = 19524;
+PORT        = 19525;
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
@@ -89,10 +89,10 @@ app.get('/fish_feeds', function(req, res){
 			res.status(400);
 			return;
 		}
-		res.status(200).render('fishes', {data: {
+		res.status(200).render('fish_feeds', {data: {
 			Fishes: rows[0],
-			Feeds: rows[0],
-			FF: rows[0]
+			Feeds: rows[1],
+			FF: rows[2]
 		}});
 	});
 });
@@ -105,10 +105,10 @@ app.get('/plants_pumps', function(req, res){
 			res.status(400);
 			return;
 		}
-		res.status(200).render('fishes', {data: {
+		res.status(200).render('plants_pumps', {data: {
 			Plants: rows[0],
-			Pumps: rows[0],
-			PP: rows[0]
+			Pumps: rows[1],
+			PP: rows[2]
 		}});
 	});
 });
