@@ -359,6 +359,97 @@ app.post('/input_pp', function(req, res){
 	});
 });
 
+//Deletion Routes
+app.delete('/fishes/:id', function(req, res){
+	//Data and for query
+	let id = req.params.id;
+	let query = 'DELETE FROM Fishes WHERE fish_id = ' + id + ';';
+
+	//Query Execution
+	db.pool.query(query, function(error, rows, fields){
+		if(error){
+			console.log("Query Failure. Error Code: " + error.code);
+			res.status(400);
+			return;
+		}
+		else{
+			res.status(200);
+		}
+	});
+});
+
+app.delete('/feeds/:id', function(req, res){
+	//Data and for query
+	let id = req.params.id;
+	let query = 'DELETE FROM Feeds WHERE feed_id = ' + id + ';';
+
+	//Query Execution
+	db.pool.query(query, function(error, rows, fields){
+		if(error){
+			console.log("Query Failure. Error Code: " + error.code);
+			res.status(400);
+			return;
+		}
+		else{
+			res.status(200);
+		}
+	});
+});
+
+app.delete('/pumps/:id', function(req, res){
+	//Data and for query
+	let id = req.params.id;
+	let query = 'DELETE FROM Pumps WHERE pump_id = ' + id + ';';
+
+	//Query Execution
+	db.pool.query(query, function(error, rows, fields){
+		if(error){
+			console.log("Query Failure. Error Code: " + error.code);
+			res.status(400);
+			return;
+		}
+		else{
+			res.status(200);
+		}
+	});
+});
+
+app.delete('/plants/:id', function(req, res){
+	//Data and for query
+	let id = req.params.id;
+	let query = 'DELETE FROM Plants WHERE plant_id = ' + id + ';';
+
+	//Query Execution
+	db.pool.query(query, function(error, rows, fields){
+		if(error){
+			console.log("Query Failure. Error Code: " + error.code);
+			res.status(400);
+			return;
+		}
+		else{
+			res.status(200);
+		}
+	});
+});
+
+app.delete('/tanks/:id', function(req, res){
+	//Data and for query
+	let id = req.params.id;
+	let query = 'DELETE FROM Tanks WHERE tank_id = ' + id + ';';
+
+	//Query Execution
+	db.pool.query(query, function(error, rows, fields){
+		if(error){
+			console.log("Query Failure. Error Code: " + error.code);
+			res.status(400);
+			return;
+		}
+		else{
+			res.status(200);
+		}
+	});
+});
+
 //404 Page
 app.get('*', function(req, res){
 	res.status(404).render('404');
