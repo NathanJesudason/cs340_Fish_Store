@@ -359,6 +359,27 @@ app.post('/input_pp', function(req, res){
 	});
 });
 
+//Update Routes
+app.put('/tanks/:id/:volume/:pump', function(req, res){
+	//Data and query
+	let id = req.params.id;
+	let volume = req.params.volume;
+	let pump = req.params.pump;
+	let query = 'UPDATE Tanks SET volume = ' + volume + ', pump_id = ' + pump + ' WHERE tank_id = ' + id + ';';
+
+	//Query Execution
+	db.pool.query(query, function(error, rows, fields){
+		if(error){
+			console.log("Query Failure. Error Code: " + error.code);
+			res.status(400);
+			return;
+		}
+		else{
+			res.status(200);
+		}
+	});
+});
+
 //Deletion Routes
 app.delete('/fishes/:id', function(req, res){
 	//Data and for query
