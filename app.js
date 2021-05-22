@@ -380,6 +380,88 @@ app.put('/tanks/:id/:volume/:pump', function(req, res){
 	});
 });
 
+app.put('/fishes/:id/:species/:age/:tank/:volume', function(req, res){
+	//Data and query
+	let id = req.params.id;
+	let species = req.params.species;
+	let age = req.params.age;
+	let tank = req.params.tank;
+	let volume = req.params.volume;
+	let query = 'UPDATE Tanks SET species = ' + species + ', age = ' + age + ', tank_id = ' + tank + ', volume_needed = ' + volume + ' WHERE tank_id = ' + id + ';';
+
+	//Query Execution
+	db.pool.query(query, function(error, rows, fields){
+		if(error){
+			console.log("Query Failure. Error Code: " + error.code);
+			res.status(400);
+			return;
+		}
+		else{
+			res.status(200);
+		}
+	});
+});
+
+app.put('/feeds/:id/:name/:stock', function(req, res){
+	//Data and query
+	let id = req.params.id;
+	let name = req.params.name;
+	let stock = req.params.stock;
+	let query = 'UPDATE Feeds SET name = ' + name + ', stock = ' + stock + ' WHERE feed_id = ' + id + ';';
+
+	//Query Execution
+	db.pool.query(query, function(error, rows, fields){
+		if(error){
+			console.log("Query Failure. Error Code: " + error.code);
+			res.status(400);
+			return;
+		}
+		else{
+			res.status(200);
+		}
+	});
+});
+
+app.put('/plants/:id/:species/:tank', function(req, res){
+	//Data and query
+	let id = req.params.id;
+	let species = req.params.species;
+	let tank = req.params.tank;
+	let query = 'UPDATE Plants SET species = ' + species + ', tank_id = ' + tank + ' WHERE plant_id = ' + id + ';';
+
+	//Query Execution
+	db.pool.query(query, function(error, rows, fields){
+		if(error){
+			console.log("Query Failure. Error Code: " + error.code);
+			res.status(400);
+			return;
+		}
+		else{
+			res.status(200);
+		}
+	});
+});
+
+app.put('/pumps/:id/:flow/:age', function(req, res){
+	//Data and query
+	let id = req.params.id;
+	let flow = req.params.flow;
+	let age = req.params.age;
+	let query = 'UPDATE Pumps SET flow_rate = ' + flow + ', age = ' + age + ' WHERE pump_id = ' + id + ';';
+
+	//Query Execution
+	db.pool.query(query, function(error, rows, fields){
+		if(error){
+			console.log("Query Failure. Error Code: " + error.code);
+			res.status(400);
+			return;
+		}
+		else{
+			res.status(200);
+		}
+	});
+});
+
 //Deletion Routes
 app.delete('/fishes/:id', function(req, res){
 	//Data and for query
