@@ -99,6 +99,7 @@ if(plants != null){
 
 //tanks update and delete
 var tanks = document.getElementById("delete_tanks");
+var tanks1 = document.getElementById("update_tanks");
 if(tanks != null){
     tanks.addEventListener("click", function(){
         var ids = [];
@@ -115,6 +116,33 @@ if(tanks != null){
         for(var i = 0; i < ids.length; i++){
             var xhttp = new XMLHttpRequest();
             xhttp.open("DELETE", "/tanks/" + ids[i], true);
+            xhttp.send();
+        }
+
+        window.location.reload();
+    });
+
+    tanks1.addEventListener("click", function(){
+        data = document.getElementsByClassName("tank_data");
+        for(var i = 0; i < data.length; i++){
+            var id = data[i].childNodes[1].placeholder;
+            var volume = data[i].childNodes[3].value;
+            var pump_id = data[i].childNodes[5].value;
+
+            //fill out empty data
+            if(volume == "" || volume == null)
+                volume = data[i].childNodes[3].placeholder;
+
+            if(pump_id == ""){
+                pump_id = data[i].childNodes[5].placeholder;
+            
+                //change to null value if still empty
+                if(pump_id == "")
+                    pump_id = "null";
+            }
+
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("PUT", "/tanks/" + id + '/' + volume + '/' + pump_id, true);
             xhttp.send();
         }
 
