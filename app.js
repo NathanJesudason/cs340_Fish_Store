@@ -387,7 +387,7 @@ app.put('/fishes/:id/:species/:age/:tank/:volume', function(req, res){
 	let age = req.params.age;
 	let tank = req.params.tank;
 	let volume = req.params.volume;
-	let query = 'UPDATE Tanks SET species = ' + species + ', age = ' + age + ', tank_id = ' + tank + ', volume_needed = ' + volume + ' WHERE tank_id = ' + id + ';';
+	let query = 'UPDATE Fishes SET species = \"' + species + '\", age = ' + age + ', tank_id = ' + tank + ', volume_needed = ' + volume + ' WHERE fish_id = ' + id + ';';
 
 	//Query Execution
 	db.pool.query(query, function(error, rows, fields){
@@ -407,7 +407,7 @@ app.put('/feeds/:id/:name/:stock', function(req, res){
 	let id = req.params.id;
 	let name = req.params.name;
 	let stock = req.params.stock;
-	let query = 'UPDATE Feeds SET name = ' + name + ', stock = ' + stock + ' WHERE feed_id = ' + id + ';';
+	let query = 'UPDATE Feeds SET name = \"' + name + '\", stock = ' + stock + ' WHERE feed_id = ' + id + ';';
 
 	//Query Execution
 	db.pool.query(query, function(error, rows, fields){
@@ -427,7 +427,7 @@ app.put('/plants/:id/:species/:tank', function(req, res){
 	let id = req.params.id;
 	let species = req.params.species;
 	let tank = req.params.tank;
-	let query = 'UPDATE Plants SET species = ' + species + ', tank_id = ' + tank + ' WHERE plant_id = ' + id + ';';
+	let query = 'UPDATE Plants SET species = \"' + species + '\", tank_id = ' + tank + ' WHERE plant_id = ' + id + ';';
 
 	//Query Execution
 	db.pool.query(query, function(error, rows, fields){
