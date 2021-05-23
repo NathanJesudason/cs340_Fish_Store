@@ -23,25 +23,43 @@ app.get('/', function(req, res){
 //Displaying data routes
 app.get('/fishes', function(req, res){
 	let query = 'SELECT fish_id, species, age, tank_id, volume_needed FROM Fishes;';
+	let query2 = 'SELECT tank_id FROM Tanks ORDER BY tank_id ASC;';
 	db.pool.query(query, function(error, rows, fields){
 		if(error){
 			console.log("Query Failure. Error Code: " + error.code);
 			res.status(400);
 			return;
 		}
-		res.status(200).render('fishes', {Fishes: rows});
+
+		db.pool.query(query2, function(error, rows2, fields2){
+			if(error){
+				console.log("Query Failure. Error Code: " + error.code);
+				res.status(400);
+				return;
+			}
+			res.status(200).render('fishes', {Fishes: rows, Tanks: rows2});
+		});
 	});
 });
 
 app.get('/tanks', function(req, res){
 	let query = 'SELECT tank_id, volume, pump_id FROM Tanks;';
+	let query2 = 'SELECT pump_id FROM Pumps ORDER BY pump_id ASC;';
 	db.pool.query(query, function(error, rows, fields){
 		if(error){
 			console.log("Query Failure. Error Code: " + error.code);
 			res.status(400);
 			return;
 		}
-		res.status(200).render('tanks', {Tanks: rows});
+
+		db.pool.query(query2, function(error, rows2, fields2){
+			if(error){
+				console.log("Query Failure. Error Code: " + error.code);
+				res.status(400);
+				return;
+			}
+			res.status(200).render('tanks', {Tanks: rows, Pumps: rows2});
+		});
 	});
 });
 
@@ -71,13 +89,23 @@ app.get('/pumps', function(req, res){
 
 app.get('/plants', function(req, res){
 	let query = 'SELECT plant_id, species, tank_id FROM Plants;';
+	let query2 = 'SELECT tank_id FROM Tanks ORDER BY tank_id ASC;';
+
 	db.pool.query(query, function(error, rows, fields){
 		if(error){
 			console.log("Query Failure. Error Code: " + error.code);
 			res.status(400);
 			return;
 		}
-		res.status(200).render('plants', {Plants: rows});
+
+		db.pool.query(query2, function(error, rows2, fields2){
+			if(error){
+				console.log("Query Failure. Error Code: " + error.code);
+				res.status(400);
+				return;
+			}
+			res.status(200).render('plants', {Plants: rows, Tanks: rows2});
+		});
 	});
 });
 
@@ -123,6 +151,7 @@ app.get('/fishes_filter', function(req, res){
 	let tank_id = data['get_tank_id'];
 	let volume = data['get_volume_needed'];
 	let query = 'SELECT fish_id, species, age, tank_id, volume_needed FROM Fishes WHERE fish_id LIKE \"%'+id+'%\" AND species LIKE \"%'+species+'%\" AND age LIKE \"%'+age+'%\" AND tank_id LIKE \"%'+tank_id+'%\" AND volume_needed LIKE \"%'+volume+'%\";';
+	let query2 = 'SELECT tank_id FROM Tanks ORDER BY tank_id ASC;';
 
 	//query execution
 	db.pool.query(query, function(error, rows, fields){
@@ -130,7 +159,15 @@ app.get('/fishes_filter', function(req, res){
 			console.log("Query Failure. Error Code: " + error.code);
 			return;
 		}
-		res.status(200).render('fishes', {Fishes: rows});
+
+		db.pool.query(query2, function(error, rows2, fields2){
+			if(error){
+				console.log("Query Failure. Error Code: " + error.code);
+				res.status(400);
+				return;
+			}
+			res.status(200).render('fishes', {Fishes: rows, Tanks: rows2});
+		});
 	});
 });
 
@@ -159,6 +196,7 @@ app.get('/plants_filter', function(req, res){
 	let species = data['get_species'];
 	let tank = data['get_tank_id'];
 	let query = 'SELECT plant_id, species, tank_id FROM Plants WHERE plant_id LIKE \"%'+id+'%\" AND species LIKE \"%'+species+'%\" AND tank_id LIKE \"%'+tank+'%\";';
+	let query2 = 'SELECT tank_id FROM Tanks ORDER BY tank_id ASC;';
 
 	//query execution
 	db.pool.query(query, function(error, rows, fields){
@@ -166,7 +204,15 @@ app.get('/plants_filter', function(req, res){
 			console.log("Query Failure. Error Code: " + error.code);
 			return;
 		}
-		res.status(200).render('plants', {Plants: rows});
+
+		db.pool.query(query2, function(error, rows2, fields2){
+			if(error){
+				console.log("Query Failure. Error Code: " + error.code);
+				res.status(400);
+				return;
+			}
+			res.status(200).render('plants', {Plants: rows, Tanks: rows2});
+		});
 	});
 });
 
@@ -195,6 +241,7 @@ app.get('/tanks_filter', function(req, res){
 	let volume = data['get_volume'];
 	let pump = data['get_pump_id'];
 	let query = 'SELECT tank_id, volume, pump_id FROM Tanks WHERE tank_id LIKE \"%'+id+'%\" AND volume LIKE \"%'+volume+'%\" AND pump_id LIKE \"%'+pump+'%\";';
+	let query2 = 'SELECT pump_id FROM Pumps ORDER BY pump_id ASC;';
 
 	//query execution
 	db.pool.query(query, function(error, rows, fields){
@@ -202,7 +249,15 @@ app.get('/tanks_filter', function(req, res){
 			console.log("Query Failure. Error Code: " + error.code);
 			return;
 		}
-		res.status(200).render('tanks', {Tanks: rows});
+
+		db.pool.query(query2, function(error, rows2, fields2){
+			if(error){
+				console.log("Query Failure. Error Code: " + error.code);
+				res.status(400);
+				return;
+			}
+			res.status(200).render('tanks', {Tanks: rows, Pumps: rows2});
+		});
 	});
 });
 

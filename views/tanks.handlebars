@@ -1,6 +1,12 @@
 <main id="tank">
 	<h1>Tanks</h1>
 
+	<datalist id="foreign_pumps">
+		{{#each Pumps}}
+			<option value="{{pump_id}}"></option>
+		{{/each}}
+	</datalist>
+
 	<aside class="filter_box">
 		<h3>Filter</h3>
 
@@ -19,7 +25,7 @@
 			</div>
 			<div class="inputs">
 				<label for="get_pump_id">Pump ID</label>
-				<input type="text" id="get_pump_id" name="get_pump_id">
+				<input type="text" id="get_pump_id" name="get_pump_id" list="foreign_pumps">
 			</div>
 
 			<input type="submit" value="Filter" class="query_button">
@@ -61,7 +67,7 @@
 			</div>
 			<div class="inputs">
 				<label for="set_pump_id">Pump ID</label>
-				<input type="text" id="set_pump_id" name="set_pump_id">
+				<input type="text" id="set_pump_id" name="set_pump_id" list="foreign_pumps">
 			</div>
 
 			<input type="submit" value="Create" class="query_button">
