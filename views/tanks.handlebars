@@ -30,19 +30,21 @@
 		<h3>Data</h3>
 
 		{{#> info}}
-		The boxes that turn light green are changeable and the boxes that turn salmon color are readonly. To edit data, type the desired value into the selected light green box and click on the "Update" button. To delete data, click on the checkbox next to the data's row and click the "Delete" button!
+		The boxes that turn light green are changeable and the boxes that turn salmon color are readonly. To edit data, type the desired value into the selected light green box and click on the "Update" button. For null values, enter "null" into the input box. Headers with a * are nullable. To delete data, click on the checkbox next to the data's row and click the "Delete" button!
 		{{/info}}
 
 		<div class="header">
 			<input type="text" id="tank_id_head" placeholder="Tank ID" readonly>
 			<input type="text" id="volume_head"placeholder="Volume" readonly>
-			<input type="text" id="pump_id_head" placeholder="Pump ID" readonly>
+			<input type="text" id="pump_id_head" placeholder="*Pump ID" readonly>
 			<input type="text" id="delete_head" placeholder="Delete Row" readonly>
 		</div>
 
 		{{#each Tanks}}
 			{{> tank_data}}
 		{{/each}}<br>
+		<button id="update_tanks">Update</button>
+		<button id="delete_tanks">Delete</button>
 	</div>
 
 	<div class="create">
@@ -65,7 +67,4 @@
 			<input type="submit" value="Create" class="query_button">
 		</form>
 	</div><br>
-
-	{{> buttons}}
-
 </main>

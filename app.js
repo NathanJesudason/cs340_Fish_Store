@@ -220,16 +220,21 @@ app.post('/input_fishes', function(req, res){
 	let query = 'INSERT INTO Fishes (species, age, tank_id, volume_needed) VALUES (\"'+species+'\", '+age+', '+tank+', '+volume+');';
 
 	//Query Execution
-	db.pool.query(query, function(error, rows, fields){
-		if(error){
-			console.log("Query Failure. Error Code: " + error.code);
-			res.status(400).redirect('/fishes');
-			return;
-		}
-		else{
-			res.status(200).redirect('/fishes');
-		}
-	});
+	if(!(age.includes('-') || volume.includes('-'))){
+		db.pool.query(query, function(error, rows, fields){
+			if(error){
+				console.log("Query Failure. Error Code: " + error.code);
+				res.status(400).redirect('/fishes');
+				return;
+			}
+			else{
+				res.status(200).redirect('/fishes');
+			}
+		});
+	}
+	else{
+		res.status(200).redirect('/fishes');
+	}
 });
 
 app.post('/input_feeds', function(req, res){
@@ -240,16 +245,21 @@ app.post('/input_feeds', function(req, res){
 	let query = 'INSERT INTO Feeds (name, stock) VALUES (\"'+name+'\", '+stock+');';
 
 	//Query Execution
-	db.pool.query(query, function(error, rows, fields){
-		if(error){
-			console.log("Query Failure. Error Code: " + error.code);
-			res.status(400).redirect('/feeds');
-			return;
-		}
-		else{
-			res.status(200).redirect('/feeds');
-		}
-	});
+	if(!stock.includes('-')){
+		db.pool.query(query, function(error, rows, fields){
+			if(error){
+				console.log("Query Failure. Error Code: " + error.code);
+				res.status(400).redirect('/feeds');
+				return;
+			}
+			else{
+				res.status(200).redirect('/feeds');
+			}
+		});
+	}
+	else{
+		res.status(200).redirect('/feeds');
+	}
 });
 
 app.post('/input_plants', function(req, res){
@@ -284,16 +294,21 @@ app.post('/input_pumps', function(req, res){
 	let query = 'INSERT INTO Pumps (flow_rate, age) VALUES ('+flow+', '+age+');';
 
 	//Query Execution
-	db.pool.query(query, function(error, rows, fields){
-		if(error){
-			console.log("Query Failure. Error Code: " + error.code);
-			res.status(400).redirect('/pumps');
-			return;
-		}
-		else{
-			res.status(200).redirect('/pumps');
-		}
-	});
+	if(!(flow.includes('-') || age.includes('-'))){
+		db.pool.query(query, function(error, rows, fields){
+			if(error){
+				console.log("Query Failure. Error Code: " + error.code);
+				res.status(400).redirect('/pumps');
+				return;
+			}
+			else{
+				res.status(200).redirect('/pumps');
+			}
+		});
+	}
+	else{
+		res.status(200).redirect('/pumps');
+	}
 });
 
 app.post('/input_tanks', function(req, res){
@@ -307,16 +322,21 @@ app.post('/input_tanks', function(req, res){
 	let query = 'INSERT INTO Tanks (volume, pump_id) VALUES ('+volume+', '+pump+');';
 
 	//Query Execution
-	db.pool.query(query, function(error, rows, fields){
-		if(error){
-			console.log("Query Failure. Error Code: " + error.code);
-			res.status(400).redirect('/tanks');
-			return;
-		}
-		else{
-			res.status(200).redirect('/tanks');
-		}
-	});
+	if(!volume.includes('-')){
+		db.pool.query(query, function(error, rows, fields){
+			if(error){
+				console.log("Query Failure. Error Code: " + error.code);
+				res.status(400).redirect('/tanks');
+				return;
+			}
+			else{
+				res.status(200).redirect('/tanks');
+			}
+		});
+	}
+	else{
+		res.status(200).redirect('/tanks');
+	}
 });
 
 app.post('/input_ff', function(req, res){
@@ -355,6 +375,200 @@ app.post('/input_pp', function(req, res){
 		}
 		else{
 			res.status(200).redirect('/plants_pumps');
+		}
+	});
+});
+
+//Update Routes
+app.put('/tanks/:id/:volume/:pump', function(req, res){
+	//Data and query
+	let id = req.params.id;
+	let volume = req.params.volume;
+	let pump = req.params.pump;
+	let query = 'UPDATE Tanks SET volume = ' + volume + ', pump_id = ' + pump + ' WHERE tank_id = ' + id + ';';
+
+	//Query Execution
+	db.pool.query(query, function(error, rows, fields){
+		if(error){
+			console.log("Query Failure. Error Code: " + error.code);
+			res.status(400);
+			return;
+		}
+		else{
+			res.status(200);
+		}
+	});
+});
+
+app.put('/fishes/:id/:species/:age/:tank/:volume', function(req, res){
+	//Data and query
+	let id = req.params.id;
+	let species = req.params.species;
+	let age = req.params.age;
+	let tank = req.params.tank;
+	let volume = req.params.volume;
+	let query = 'UPDATE Fishes SET species = \"' + species + '\", age = ' + age + ', tank_id = ' + tank + ', volume_needed = ' + volume + ' WHERE fish_id = ' + id + ';';
+
+	//Query Execution
+	db.pool.query(query, function(error, rows, fields){
+		if(error){
+			console.log("Query Failure. Error Code: " + error.code);
+			res.status(400);
+			return;
+		}
+		else{
+			res.status(200);
+		}
+	});
+});
+
+app.put('/feeds/:id/:name/:stock', function(req, res){
+	//Data and query
+	let id = req.params.id;
+	let name = req.params.name;
+	let stock = req.params.stock;
+	let query = 'UPDATE Feeds SET name = \"' + name + '\", stock = ' + stock + ' WHERE feed_id = ' + id + ';';
+
+	//Query Execution
+	db.pool.query(query, function(error, rows, fields){
+		if(error){
+			console.log("Query Failure. Error Code: " + error.code);
+			res.status(400);
+			return;
+		}
+		else{
+			res.status(200);
+		}
+	});
+});
+
+app.put('/plants/:id/:species/:tank', function(req, res){
+	//Data and query
+	let id = req.params.id;
+	let species = req.params.species;
+	let tank = req.params.tank;
+	let query = 'UPDATE Plants SET species = \"' + species + '\", tank_id = ' + tank + ' WHERE plant_id = ' + id + ';';
+
+	//Query Execution
+	db.pool.query(query, function(error, rows, fields){
+		if(error){
+			console.log("Query Failure. Error Code: " + error.code);
+			res.status(400);
+			return;
+		}
+		else{
+			res.status(200);
+		}
+	});
+});
+
+app.put('/pumps/:id/:flow/:age', function(req, res){
+	//Data and query
+	let id = req.params.id;
+	let flow = req.params.flow;
+	let age = req.params.age;
+	let query = 'UPDATE Pumps SET flow_rate = ' + flow + ', age = ' + age + ' WHERE pump_id = ' + id + ';';
+
+	//Query Execution
+	db.pool.query(query, function(error, rows, fields){
+		if(error){
+			console.log("Query Failure. Error Code: " + error.code);
+			res.status(400);
+			return;
+		}
+		else{
+			res.status(200);
+		}
+	});
+});
+
+//Deletion Routes
+app.delete('/fishes/:id', function(req, res){
+	//Data and for query
+	let id = req.params.id;
+	let query = 'DELETE FROM Fishes WHERE fish_id = ' + id + ';';
+
+	//Query Execution
+	db.pool.query(query, function(error, rows, fields){
+		if(error){
+			console.log("Query Failure. Error Code: " + error.code);
+			res.status(400);
+			return;
+		}
+		else{
+			res.status(200);
+		}
+	});
+});
+
+app.delete('/feeds/:id', function(req, res){
+	//Data and for query
+	let id = req.params.id;
+	let query = 'DELETE FROM Feeds WHERE feed_id = ' + id + ';';
+
+	//Query Execution
+	db.pool.query(query, function(error, rows, fields){
+		if(error){
+			console.log("Query Failure. Error Code: " + error.code);
+			res.status(400);
+			return;
+		}
+		else{
+			res.status(200);
+		}
+	});
+});
+
+app.delete('/pumps/:id', function(req, res){
+	//Data and for query
+	let id = req.params.id;
+	let query = 'DELETE FROM Pumps WHERE pump_id = ' + id + ';';
+
+	//Query Execution
+	db.pool.query(query, function(error, rows, fields){
+		if(error){
+			console.log("Query Failure. Error Code: " + error.code);
+			res.status(400);
+			return;
+		}
+		else{
+			res.status(200);
+		}
+	});
+});
+
+app.delete('/plants/:id', function(req, res){
+	//Data and for query
+	let id = req.params.id;
+	let query = 'DELETE FROM Plants WHERE plant_id = ' + id + ';';
+
+	//Query Execution
+	db.pool.query(query, function(error, rows, fields){
+		if(error){
+			console.log("Query Failure. Error Code: " + error.code);
+			res.status(400);
+			return;
+		}
+		else{
+			res.status(200);
+		}
+	});
+});
+
+app.delete('/tanks/:id', function(req, res){
+	//Data and for query
+	let id = req.params.id;
+	let query = 'DELETE FROM Tanks WHERE tank_id = ' + id + ';';
+
+	//Query Execution
+	db.pool.query(query, function(error, rows, fields){
+		if(error){
+			console.log("Query Failure. Error Code: " + error.code);
+			res.status(400);
+			return;
+		}
+		else{
+			res.status(200);
 		}
 	});
 });
