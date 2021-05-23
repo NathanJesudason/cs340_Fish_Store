@@ -13,20 +13,20 @@ SET foreign_key_checks = 1;
 CREATE TABLE Feeds(
 feed_id INT AUTO_INCREMENT,
 name VARCHAR(100) NOT NULL,
-stock INT NOT NULL,
+stock INT unsigned NOT NULL,
 PRIMARY KEY (feed_id)
 );
 
 CREATE TABLE Pumps(
 pump_id INT AUTO_INCREMENT,
-flow_rate DECIMAL(6,2) NOT NULL,
-age INT NOT NULL,
+flow_rate DECIMAL(6,2) unsigned NOT NULL,
+age INT unsigned NOT NULL,
 PRIMARY KEY (pump_id)
 );
 
 CREATE TABLE Tanks(
 tank_id INT AUTO_INCREMENT,
-volume INT NOT NULL,
+volume INT unsigned NOT NULL,
 pump_id INT,
 FOREIGN KEY (pump_id) REFERENCES Pumps(pump_id),
 PRIMARY KEY (tank_id)
@@ -35,9 +35,9 @@ PRIMARY KEY (tank_id)
 CREATE TABLE Fishes(
 fish_id INT AUTO_INCREMENT,
 species VARCHAR(100) NOT NULL,
-age INT NOT NULL,
+age INT unsigned NOT NULL,
 tank_id INT,
-volume_needed DECIMAL(6,2) NOT NULL,
+volume_needed DECIMAL(6,2) unsigned NOT NULL,
 FOREIGN KEY(tank_id) REFERENCES Tanks(tank_id),
 PRIMARY KEY (fish_id)
 );
