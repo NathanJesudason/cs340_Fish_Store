@@ -395,7 +395,7 @@ app.put('/tanks/:id/:volume/:pump', function(req, res){
 			return;
 		}
 		else{
-			res.status(200);
+			res.status(200).end();
 		}
 	});
 });
@@ -417,7 +417,7 @@ app.put('/fishes/:id/:species/:age/:tank/:volume', function(req, res){
 			return;
 		}
 		else{
-			res.status(200);
+			res.status(200).end();
 		}
 	});
 });
@@ -437,7 +437,7 @@ app.put('/feeds/:id/:name/:stock', function(req, res){
 			return;
 		}
 		else{
-			res.status(200);
+			res.status(200).end();
 		}
 	});
 });
@@ -457,7 +457,7 @@ app.put('/plants/:id/:species/:tank', function(req, res){
 			return;
 		}
 		else{
-			res.status(200);
+			res.status(200).end();
 		}
 	});
 });
@@ -477,7 +477,7 @@ app.put('/pumps/:id/:flow/:age', function(req, res){
 			return;
 		}
 		else{
-			res.status(200);
+			res.status(200).end();
 		}
 	});
 });
@@ -493,10 +493,10 @@ app.delete('/fishes/:id', function(req, res){
 		if(error){
 			console.log("Query Failure. Error Code: " + error.code);
 			res.status(400);
-			return;
+			res.end();
 		}
 		else{
-			res.status(200);
+			res.status(200).end();
 		}
 	});
 });
@@ -514,7 +514,7 @@ app.delete('/feeds/:id', function(req, res){
 			return;
 		}
 		else{
-			res.status(200);
+			res.status(200).end();
 		}
 	});
 });
@@ -532,7 +532,7 @@ app.delete('/pumps/:id', function(req, res){
 			return;
 		}
 		else{
-			res.status(200);
+			res.status(200).end();
 		}
 	});
 });
@@ -550,7 +550,7 @@ app.delete('/plants/:id', function(req, res){
 			return;
 		}
 		else{
-			res.status(200);
+			res.status(200).end();
 		}
 	});
 });
@@ -568,7 +568,7 @@ app.delete('/tanks/:id', function(req, res){
 			return;
 		}
 		else{
-			res.status(200);
+			res.status(200).end();
 		}
 	});
 });
