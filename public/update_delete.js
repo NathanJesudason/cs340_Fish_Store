@@ -52,9 +52,11 @@ if(fishes != null){
             if(volume == "" || volume == null)
                 volume = data[i].childNodes[9].placeholder;
 
-            var xhttp = new XMLHttpRequest();
-            xhttp.open("PUT", "/fishes/" + id + '/' + species + '/' + age + '/' + tank + '/' + volume, true);
-            xhttp.send();
+            if(!(age.includes("-") || volume.includes("-"))){
+                var xhttp = new XMLHttpRequest();
+                xhttp.open("PUT", "/fishes/" + id + '/' + species + '/' + age + '/' + tank + '/' + volume, true);
+                xhttp.send();
+            }
         }
 
         window.location.reload();
@@ -102,9 +104,11 @@ if(feeds != null){
                 stock = data[i].childNodes[5].placeholder;
             }
 
-            var xhttp = new XMLHttpRequest();
-            xhttp.open("PUT", "/feeds/" + id + '/' + name + '/' + stock, true);
-            xhttp.send();
+            if(!stock.includes("-")){
+                var xhttp = new XMLHttpRequest();
+                xhttp.open("PUT", "/feeds/" + id + '/' + name + '/' + stock, true);
+                xhttp.send();
+            }
         }
 
         window.location.reload();
@@ -153,9 +157,11 @@ if(pumps != null){
                 age = data[i].childNodes[5].placeholder;
             }
 
-            var xhttp = new XMLHttpRequest();
-            xhttp.open("PUT", "/pumps/" + id + '/' + flow + '/' + age, true);
-            xhttp.send();
+            if(!(flow.includes("-") || age.includes("-"))){
+                var xhttp = new XMLHttpRequest();
+                xhttp.open("PUT", "/pumps/" + id + '/' + flow + '/' + age, true);
+                xhttp.send();
+            }
         }
 
         window.location.reload();
@@ -263,9 +269,11 @@ if(tanks != null){
                     pump_id = "null";
             }
 
-            var xhttp = new XMLHttpRequest();
-            xhttp.open("PUT", "/tanks/" + id + '/' + volume + '/' + pump_id, true);
-            xhttp.send();
+            if(!(volume.includes("-"))){
+                var xhttp = new XMLHttpRequest();
+                xhttp.open("PUT", "/tanks/" + id + '/' + volume + '/' + pump_id, true);
+                xhttp.send();
+            }
         }
 
         window.location.reload();
