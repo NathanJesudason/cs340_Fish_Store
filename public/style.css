@@ -213,7 +213,7 @@ button {
     margin: 10px;
 }
 
-.query_button {
+.input_box .query_button {
     background-color: darkgreen;
     color: white;
     text-align: center;
@@ -221,7 +221,8 @@ button {
     width: 12%;
     height: 35px;
     border-radius: 30px;
-    margin: 10px;
+    margin-right: 100%;
+    margin-top: 25px;
 }
 
 .buttons {

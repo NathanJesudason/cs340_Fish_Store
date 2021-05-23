@@ -17,11 +17,16 @@ if(fishes != null){
         //Delete ids in the list
         for(var i = 0; i < ids.length; i++){
             var xhttp = new XMLHttpRequest();
+
+            xhttp.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+                    window.location.reload();
+                }
+            };
+
             xhttp.open("DELETE", "/fishes/" + ids[i], true);
             xhttp.send();
         }
-
-        window.location.reload();
     });
 
     //Update Parse
@@ -54,12 +59,17 @@ if(fishes != null){
 
             if(!(age.includes("-") || volume.includes("-"))){
                 var xhttp = new XMLHttpRequest();
+
+                xhttp.onreadystatechange = function(){
+                    if(this.readyState == 4 && this.status == 200){
+                        window.location.reload();
+                    }
+                };
+    
                 xhttp.open("PUT", "/fishes/" + id + '/' + species + '/' + age + '/' + tank + '/' + volume, true);
                 xhttp.send();
             }
         }
-
-        window.location.reload();
     });
 }
 
@@ -82,10 +92,16 @@ if(feeds != null){
         //Delete ids in the list
         for(var i = 0; i < ids.length; i++){
             var xhttp = new XMLHttpRequest();
+
+            xhttp.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+                    window.location.reload();
+                }
+            };
+
             xhttp.open("DELETE", "/feeds/" + ids[i], true);
             xhttp.send();
         }
-        window.location.reload();
     });
 
     //Update Parse
@@ -106,12 +122,17 @@ if(feeds != null){
 
             if(!stock.includes("-")){
                 var xhttp = new XMLHttpRequest();
+
+                xhttp.onreadystatechange = function(){
+                    if(this.readyState == 4 && this.status == 200){
+                        window.location.reload();
+                    }
+                };
+    
                 xhttp.open("PUT", "/feeds/" + id + '/' + name + '/' + stock, true);
                 xhttp.send();
             }
         }
-
-        window.location.reload();
     });
 }
 
@@ -134,11 +155,16 @@ if(pumps != null){
         //Delete ids in the list
         for(var i = 0; i < ids.length; i++){
             var xhttp = new XMLHttpRequest();
+
+            xhttp.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+                    window.location.reload();
+                }
+            };
+
             xhttp.open("DELETE", "/pumps/" + ids[i], true);
             xhttp.send();
         }
-
-        window.location.reload();
     });
 
     //Update parse
@@ -159,12 +185,17 @@ if(pumps != null){
 
             if(!(flow.includes("-") || age.includes("-"))){
                 var xhttp = new XMLHttpRequest();
+
+                xhttp.onreadystatechange = function(){
+                    if(this.readyState == 4 && this.status == 200){
+                        window.location.reload();
+                    }
+                };
+    
                 xhttp.open("PUT", "/pumps/" + id + '/' + flow + '/' + age, true);
                 xhttp.send();
             }
         }
-
-        window.location.reload();
     });
 }
 
@@ -187,11 +218,16 @@ if(plants != null){
         //Delete ids in the list
         for(var i = 0; i < ids.length; i++){
             var xhttp = new XMLHttpRequest();
+
+            xhttp.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+                    window.location.reload();
+                }
+            };
+
             xhttp.open("DELETE", "/plants/" + ids[i], true);
             xhttp.send();
         }
-
-        window.location.reload();
     });
 
     //Update Parse
@@ -215,11 +251,16 @@ if(plants != null){
             }
 
             var xhttp = new XMLHttpRequest();
+
+            xhttp.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+                    window.location.reload();
+                }
+            };
+
             xhttp.open("PUT", "/plants/" + id + '/' + species + '/' + tank, true);
             xhttp.send();
         }
-
-        window.location.reload();
     });
 }
 
@@ -242,11 +283,16 @@ if(tanks != null){
         //Delete ids in the list
         for(var i = 0; i < ids.length; i++){
             var xhttp = new XMLHttpRequest();
+ 
+            xhttp.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+                    window.location.reload();
+                }
+            };
+
             xhttp.open("DELETE", "/tanks/" + ids[i], true);
             xhttp.send();
         }
-
-        window.location.reload();
     });
 
     //Update Parse
@@ -271,11 +317,16 @@ if(tanks != null){
 
             if(!(volume.includes("-"))){
                 var xhttp = new XMLHttpRequest();
+
+                xhttp.onreadystatechange = function(){
+                    if(this.readyState == 4 && this.status == 200){
+                        window.location.reload();
+                    }
+                };
+    
                 xhttp.open("PUT", "/tanks/" + id + '/' + volume + '/' + pump_id, true);
                 xhttp.send();
             }
         }
-
-        window.location.reload();
     });
 }
