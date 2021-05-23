@@ -220,16 +220,21 @@ app.post('/input_fishes', function(req, res){
 	let query = 'INSERT INTO Fishes (species, age, tank_id, volume_needed) VALUES (\"'+species+'\", '+age+', '+tank+', '+volume+');';
 
 	//Query Execution
-	db.pool.query(query, function(error, rows, fields){
-		if(error){
-			console.log("Query Failure. Error Code: " + error.code);
-			res.status(400).redirect('/fishes');
-			return;
-		}
-		else{
-			res.status(200).redirect('/fishes');
-		}
-	});
+	if(!(age.includes('-') || volume.includes('-'))){
+		db.pool.query(query, function(error, rows, fields){
+			if(error){
+				console.log("Query Failure. Error Code: " + error.code);
+				res.status(400).redirect('/fishes');
+				return;
+			}
+			else{
+				res.status(200).redirect('/fishes');
+			}
+		});
+	}
+	else{
+		res.status(200).redirect('/fishes');
+	}
 });
 
 app.post('/input_feeds', function(req, res){
@@ -240,16 +245,21 @@ app.post('/input_feeds', function(req, res){
 	let query = 'INSERT INTO Feeds (name, stock) VALUES (\"'+name+'\", '+stock+');';
 
 	//Query Execution
-	db.pool.query(query, function(error, rows, fields){
-		if(error){
-			console.log("Query Failure. Error Code: " + error.code);
-			res.status(400).redirect('/feeds');
-			return;
-		}
-		else{
-			res.status(200).redirect('/feeds');
-		}
-	});
+	if(!stock.includes('-')){
+		db.pool.query(query, function(error, rows, fields){
+			if(error){
+				console.log("Query Failure. Error Code: " + error.code);
+				res.status(400).redirect('/feeds');
+				return;
+			}
+			else{
+				res.status(200).redirect('/feeds');
+			}
+		});
+	}
+	else{
+		res.status(200).redirect('/feeds');
+	}
 });
 
 app.post('/input_plants', function(req, res){
@@ -284,16 +294,21 @@ app.post('/input_pumps', function(req, res){
 	let query = 'INSERT INTO Pumps (flow_rate, age) VALUES ('+flow+', '+age+');';
 
 	//Query Execution
-	db.pool.query(query, function(error, rows, fields){
-		if(error){
-			console.log("Query Failure. Error Code: " + error.code);
-			res.status(400).redirect('/pumps');
-			return;
-		}
-		else{
-			res.status(200).redirect('/pumps');
-		}
-	});
+	if(!(flow.includes('-') || age.includes('-'))){
+		db.pool.query(query, function(error, rows, fields){
+			if(error){
+				console.log("Query Failure. Error Code: " + error.code);
+				res.status(400).redirect('/pumps');
+				return;
+			}
+			else{
+				res.status(200).redirect('/pumps');
+			}
+		});
+	}
+	else{
+		res.status(200).redirect('/pumps');
+	}
 });
 
 app.post('/input_tanks', function(req, res){
@@ -307,16 +322,21 @@ app.post('/input_tanks', function(req, res){
 	let query = 'INSERT INTO Tanks (volume, pump_id) VALUES ('+volume+', '+pump+');';
 
 	//Query Execution
-	db.pool.query(query, function(error, rows, fields){
-		if(error){
-			console.log("Query Failure. Error Code: " + error.code);
-			res.status(400).redirect('/tanks');
-			return;
-		}
-		else{
-			res.status(200).redirect('/tanks');
-		}
-	});
+	if(!volume.includes('-')){
+		db.pool.query(query, function(error, rows, fields){
+			if(error){
+				console.log("Query Failure. Error Code: " + error.code);
+				res.status(400).redirect('/tanks');
+				return;
+			}
+			else{
+				res.status(200).redirect('/tanks');
+			}
+		});
+	}
+	else{
+		res.status(200).redirect('/tanks');
+	}
 });
 
 app.post('/input_ff', function(req, res){
