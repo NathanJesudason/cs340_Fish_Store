@@ -27,6 +27,54 @@ function drop(ev) {
 	}
 }
 
+function dropFish(ev) {
+	ev.preventDefault();
+	var type = ev.currentTarget.getAttribute('title');
+	var obj = JSON.parse(ev.dataTransfer.getData("text"));
+	var data = obj.value;
+	var obj_type = obj.type;
+	if("Fish" === obj_type){
+		
+		var button = ev.currentTarget.parentNode.children[2].children[0];
+		if(button.children[0].classList.contains('fa-trash')){
+			button.children[0].classList.remove('fa-trash');
+			button.children[0].classList.add('fa-arrow-circle-up');
+			button.setAttribute('data-fish', ev.currentTarget.textContent);
+			button.setAttribute('data-feed', ev.currentTarget.parentNode.children[1].textContent);
+			button.setAttribute("onclick", "updateRelationship(event)");
+		}
+		ev.currentTarget.textContent = data;
+		//ev.target.setAttribute('value', data);
+	}else{
+		console.log(type);
+		console.log(obj_type);
+	}
+}
+
+function dropFeed(ev) {
+	ev.preventDefault();
+	var type = ev.currentTarget.getAttribute('title');
+	var obj = JSON.parse(ev.dataTransfer.getData("text"));
+	var data = obj.value;
+	var obj_type = obj.type;
+	if("Feed" === obj_type){
+		
+		var button = ev.currentTarget.parentNode.children[2].children[0];
+		if(button.children[0].classList.contains('fa-trash')){
+			button.children[0].classList.remove('fa-trash');
+			button.children[0].classList.add('fa-arrow-circle-up');
+			button.setAttribute('data-fish', ev.currentTarget.parentNode.children[0].textContent);
+			button.setAttribute('data-feed', ev.currentTarget.textContent);
+			button.setAttribute("onclick", "updateRelationship(event)");
+		}
+		ev.currentTarget.textContent = data;
+		//ev.target.setAttribute('value', data);
+	}else{
+		console.log(type);
+		console.log(obj_type);
+	}
+}
+
 function addRelationship(ev) {
 	var fish = document.getElementById("fish_input").textContent;
 	var feed = document.getElementById("feed_input").textContent;
@@ -43,23 +91,67 @@ function addRelationship(ev) {
     });
 
     postRequest.setRequestHeader('Content-Type', 'application/json');
-    /*postRequest.addEventListener('load', function (event){
+    postRequest.addEventListener('load', function (event){
         if (event.target.status === 200) {
-            //var template = Handlebars.templates.definitions;
-            var Content = {
-                question: fish,
-                answer: feed
-            };
-            var cardHTML = Handlebars.templates.definitions(Content);
-            var container = document.getElementsByClassName("flashcard-definitions");
-            container[0].insertAdjacentHTML('beforeend', cardHTML);
-            //addFlashCardDelete();
-        }else{
-            alert("Error adding flashcard to server: " + event.target.response);
+			window.location.reload(true);
         }
-    });*/
+    });
     postRequest.send(reqBody);
 
+}
+
+function dropRelationship(ev) {
+	var row = ev.currentTarget.parentNode.parentNode;
+	console.log(row);
+	var fish = row.children[0].textContent;
+	var feed = row.children[1].textContent;
+
+	var postRequest = new XMLHttpRequest();
+    var URL = '/delete_ff';
+    postRequest.open('DELETE', URL);
+    var reqBody = JSON.stringify({
+        fish_id: fish,
+        feed_id: feed
+    });
+
+    postRequest.setRequestHeader('Content-Type', 'application/json');
+    postRequest.addEventListener('load', function (event){
+        if (event.target.status === 200) {
+			row.remove();
+        }
+    });
+    postRequest.send(reqBody);
+}
+
+function updateRelationship(ev) {
+	var row = ev.currentTarget.parentNode.parentNode;
+	var button = row.children[2].children[0];
+	var fish = row.children[0].textContent;
+	var feed = row.children[1].textContent;
+	var old_fish_id = button.getAttribute('data-fish');
+	var old_feed_id = button.getAttribute('data-feed');
+	var postRequest = new XMLHttpRequest();
+    var URL = '/update_ff';
+    postRequest.open('PUT', URL);
+    var reqBody = JSON.stringify({
+        fish_id: fish,
+        feed_id: feed,
+		old_feed_id: old_feed_id,
+		old_fish_id: old_fish_id
+    });
+
+    postRequest.setRequestHeader('Content-Type', 'application/json');
+    postRequest.addEventListener('load', function (event){
+        if (event.target.status === 200) {
+			button.children[0].classList.remove('fa-arrow-circle-up');
+			button.children[0].classList.add('fa-trash');
+			button.removeAttribute('data-fish');
+			button.removeAttribute('data-feed');
+			button.setAttribute("onclick", "dropRelationship(event)");
+
+        }
+    });
+    postRequest.send(reqBody);
 }
 
 </script>
