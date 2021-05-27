@@ -84,7 +84,7 @@ INSERT INTO Tanks(volume, pump_id) VALUES
 
 INSERT INTO Fishes(species, age, tank_id, volume_needed) VALUES
 ("Salmon", 3, 1, 7),
-("Tuna", 1, 1, 2),
+("Tuna", 1, null, 2),
 ("Flounder", 5, 1, 10),
 ("Squid", 11, 2, 20);
 
