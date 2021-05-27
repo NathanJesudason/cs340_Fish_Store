@@ -628,6 +628,87 @@ app.delete('/tanks/:id', function(req, res){
 	});
 });
 
+app.delete('/delete_ff', function(req, res){
+	//Data and for query
+	let data = req.body;
+	let fish_id = data['fish_id'];
+	let feed_id = data['feed_id'];
+	let query = 'DELETE FROM Fish_Feeds WHERE fish_id = ' + fish_id + ' And feed_id = ' + feed_id + ';';
+
+	//Query Execution
+	db.pool.query(query, function(error, rows, fields){
+		if(error){
+			console.log("Query Failure. Error Code: " + error.code);
+			res.status(400).end();
+			return;
+		}
+		else{
+			res.status(200).end();
+		}
+	});
+});
+
+app.delete('/delete_pp', function(req, res){
+	//Data and for query
+	let data = req.body;
+	let plant_id = data['plant_id'];
+	let pump_id = data['pump_id'];
+	let query = 'DELETE FROM Plants_Pumps WHERE plant_id = ' + plant_id + ' And pump_id = ' + pump_id + ';';
+	//Query Execution
+	db.pool.query(query, function(error, rows, fields){
+		if(error){
+			console.log("Query Failure. Error Code: " + error.code);
+			res.status(400).end();
+			return;
+		}
+		else{
+			res.status(200).end();
+		}
+	});
+});
+
+app.put('/update_ff', function(req, res){
+	//Data and for query
+	let data = req.body;
+	let fish_id = data['fish_id'];
+	let feed_id = data['feed_id'];
+	let old_fish_id = data['old_fish_id'];
+	let old_feed_id = data['old_feed_id'];
+	let query = 'UPDATE Fish_Feeds SET feed_id = ' + feed_id + ', fish_id = ' + fish_id + ' WHERE feed_id = ' + old_feed_id + ' AND fish_id = ' + old_fish_id +';';
+	//Query Execution
+	db.pool.query(query, function(error, rows, fields){
+		if(error){
+			console.log("Query Failure. Error Code: " + error.code);
+			res.status(400).end();
+			return;
+		}
+		else{
+			res.status(200).end();
+		}
+	});
+});
+
+app.put('/update_pp', function(req, res){
+	//Data and for query
+	let data = req.body;
+	let plant_id = data['plant_id'];
+	let pump_id = data['pump_id'];
+	let old_plant_id = data['old_plant_id'];
+	let old_pump_id = data['old_pump_id'];
+	let query = 'UPDATE Plants_Pumps SET plant_id = ' + plant_id + ', pump_id = ' + pump_id + ' WHERE plant_id = ' + old_plant_id + ' AND pump_id = ' + old_pump_id +';';
+	//Query Execution
+	db.pool.query(query, function(error, rows, fields){
+		if(error){
+			console.log("Query Failure. Error Code: " + error.code);
+			res.status(400).end();
+			return;
+		}
+		else{
+			res.status(200).end();
+		}
+	});
+});
+
 //404 Page
 app.get('*', function(req, res){
 	res.status(404).render('404');

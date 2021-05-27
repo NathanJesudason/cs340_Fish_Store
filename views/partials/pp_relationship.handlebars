@@ -1,5 +1,5 @@
 <tr>
-    <td style="border: 1px solid; border-color:black;">{{plant_id}}</td>
-    <td style="border: 1px solid; border-color:black;">{{pump_id}}</td>
-    <td class="delete-row"><button type="button"><i class="fas fa-trash"></i></button></td>
+    <td ondrop="dropPlant(event)" ondragover="allowDrop(event)" style="border: 1px solid; border-color:black;">{{plant_id}}</td>
+    <td ondrop="dropPump(event)" ondragover="allowDrop(event)" style="border: 1px solid; border-color:black;">{{pump_id}}</td>
+    <td class="delete-row" ><button type="button" onclick="dropRelationship(event)"><i class="fas fa-trash"></i></button></td>
 </tr>
