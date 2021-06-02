@@ -23,7 +23,7 @@ app.get('/', function(req, res){
 //Displaying data routes
 app.get('/fishes', function(req, res){
 	let query = 'SELECT fish_id, species, age, tank_id, volume_needed FROM Fishes;';
-	let query2 = 'SELECT tank_id FROM Tanks ORDER BY tank_id ASC;';
+	let query2 = 'SELECT tank_id, volume FROM Tanks ORDER BY tank_id ASC;';
 	db.pool.query(query, function(error, rows, fields){
 		if(error){
 			console.log("Query Failure. Error Code: " + error.code);
@@ -44,7 +44,7 @@ app.get('/fishes', function(req, res){
 
 app.get('/tanks', function(req, res){
 	let query = 'SELECT tank_id, volume, pump_id FROM Tanks;';
-	let query2 = 'SELECT pump_id FROM Pumps ORDER BY pump_id ASC;';
+	let query2 = 'SELECT pump_id, flow_rate FROM Pumps ORDER BY pump_id ASC;';
 	db.pool.query(query, function(error, rows, fields){
 		if(error){
 			console.log("Query Failure. Error Code: " + error.code);
@@ -89,7 +89,7 @@ app.get('/pumps', function(req, res){
 
 app.get('/plants', function(req, res){
 	let query = 'SELECT plant_id, species, tank_id FROM Plants;';
-	let query2 = 'SELECT tank_id FROM Tanks ORDER BY tank_id ASC;';
+	let query2 = 'SELECT tank_id, volume FROM Tanks ORDER BY tank_id ASC;';
 
 	db.pool.query(query, function(error, rows, fields){
 		if(error){
