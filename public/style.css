@@ -68,10 +68,35 @@ h3 {
     margin-right: auto;
 }
 
-#Fish_Feeds th, #Fish_Feeds td, #Plants_Pumps th, #Plants_Pumps td{
-    min-width: 150px;
-    padding: 0px 8px 0px 8px;
+th, td {
+    min-width: 60px;
+    padding: 11px;
     text-align: center;
+}
+
+tr .data {
+    background-color: rgb(100, 180, 230);
+}
+
+table {
+    width: 90%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+
+.objects {
+    margin: auto;
+    width: 35%;
+}
+
+#Lists {
+    display: flex;
+    justify-content: center;
+}
+
+.data {
+    box-shadow: 2px 2px 3px;
+    background-color: rgb(101, 172, 211);
 }
 
 

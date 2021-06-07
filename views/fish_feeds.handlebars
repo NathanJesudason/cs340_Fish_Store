@@ -154,13 +154,18 @@ function updateRelationship(ev) {
     postRequest.send(reqBody);
 }
 
+
 </script>
 <main class="temp_content">
-	<h1>Fish and Feeds</h1>
+	<h1>Fish and Feeds </h1> 
+
+	{{#> info}}
+		Rows of fish and feeds can be dragged into the input row to add a relationship, or dragged over an existing relationship to update.
+	{{/info}}
 
 	<div id="Lists">
 
-	<div class="Objects" style="overflow-y: scroll;">
+	<div class="objects" style="overflow-y: auto;">
 		<h2>Fish</h2>
 		<table>
 		<thead>
@@ -179,10 +184,8 @@ function updateRelationship(ev) {
 		</tbody>
 		</table>
 	</div>
-
-<i class="move fas fa-random fa-rotate-90 fa-10x"></i>
 	
-	<div class="Objects" style="overflow-y: scroll;">
+	<div class="objects" style="overflow-y: auto;">
 		<h2>Feed</h2>
 		<table>
 		<thead>
