@@ -160,8 +160,12 @@ function updateRelationship(ev) {
 <main class="temp_content">
 	<h1>Plants and Pumps</h1>
 
+	{{#> info}}
+		Rows of plants and pumps can be dragged into the input row to add a relationship, or dragged over an existing relationship to update.
+	{{/info}}
+
 	<div id="Lists">
-	<div class="Objects" style="overflow-y: scroll;">
+	<div class="objects" style="overflow-y: auto;">
 		<h2>Plants</h2>
 		<table>
 		<thead>
@@ -182,7 +186,7 @@ function updateRelationship(ev) {
 
 <!-- <i class="move fas fa-random fa-rotate-90 fa-10x"></i> -->
 
-	<div class="objects" style="overflow-y: scroll;">
+	<div class="objects" style="overflow-y: auto;">
 		<h2>Pumps</h2>
 		<table>
 		<thead>
